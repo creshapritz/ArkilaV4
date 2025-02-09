@@ -1,0 +1,433 @@
+/* -----------------------------------------------------GENERAL---------------------------------------------------------------*/
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('../fonts/SF-Pro-Display-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'SF Pro Display', sans-serif;
+    color: #2E2E2E;
+    background-color: #F9F8F2;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
+}
+html, body {
+    overflow-x: hidden; 
+}
+
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #F07324, #F9F8F2);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease;/
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ed955f;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #F07324;
+    width: 15px;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: #F9F8F2;
+}
+
+/*-----------------------------------------------------------RESPONSIVE DESIGN FOR NAVBAR-----------------------------------------*/
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .logo {
+        padding-left: 0;
+
+    }
+
+    .button-con {
+        margin-top: 10px;
+
+    }
+
+    .login-button,
+    .partner-button {
+        margin-right: 10px;
+
+    }
+}
+
+/*----------------------------------------------------------------------NAVBAR----------------------------------------------------*/
+.navbar {
+    background-color: #F07324;
+    height: 1.3in;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    justify-content: space-between;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+
+}
+
+.navbar-logo {
+    height: 100px;
+    padding-left: 120px;
+    width: auto;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    color: #F9F8F2;
+    text-decoration: none;
+    padding: 0 1rem;
+    font-weight: normal;
+    transition: font-weight 0.3s ease;
+}
+
+.logo img {
+    height: 70px;
+    padding-left: 80px;
+    width: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 80px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 80px;
+    line-height: 1;
+    margin: 5px 0 0 0;
+}
+
+
+/*-----------------------------------------------------------------BUTTON OF NAVBAR---------------------------------------------*/
+.btn-partner {
+    font-family: 'SF Pro Display', sans-serif;
+    background-color: #F9F8F2;
+    color: #F07324;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: auto;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 15px;
+    height: 50px;
+    width: 200px;
+    font-weight: normal;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-partner:hover {
+    background-color: transparent;
+    color: #F9F8F2;
+    border: 1px solid #F9F8F2;
+    font-weight: bold;
+}
+
+.btn-text {
+    font-family: 'SF Pro Display', sans-serif;
+    color: #F9F8F2;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-right: 0;
+    font-size: 16px;
+    border-radius: 15px;
+    font-weight: normal;
+}
+
+.btn-text:hover {
+    font-weight: bold;
+}
+
+.btn-login {
+    font-family: 'SF Pro Display', sans-serif;
+    background-color: #F9F8F2;
+    color: #F07324;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 15px;
+    height: 50px;
+    width: 120px;
+    font-weight: normal;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 3rem;
+}
+
+.btn-login:hover {
+    background-color: transparent;
+    color: #F9F8F2;
+    border: 1px solid #F9F8F2;
+    font-weight: bold;
+}
+
+/*-----------------------------------------------------SIDEBAR-------------------------------------------------------------------*/
+.sidebar {
+    background-color: #F9F8F2;
+    width: 60px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: width 0.3s ease;
+    padding: 50px 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+/* --------------------------------------------------------------------EXPANDING SIDEBAR-------------------------------------- */
+.sidebar.expanded {
+    width: 240px;
+    background-color: #F9F8F2;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    color: #2E2E2E;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px 15px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    border-radius: 8px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #C6C5C0;
+    box-shadow: #C6C5C0;
+}
+
+.sidebar ul li i {
+    font-size: 28px;
+    transition: font-size 0.3s ease;
+}
+
+.sidebar ul li a span {
+    display: none;
+    margin-left: 15px;
+}
+
+.sidebar.expanded ul li a span {
+    display: inline-block;
+}
+
+.sidebar.expanded ul li i {
+    font-size: 32px;
+}
+
+
+#menu-icon {
+    font-size: 32px;
+    color: #2E2E2E;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+}
+
+.menu-text {
+    display: none;
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 35px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    color: #2E2E2E;
+}
+
+.sidebar.expanded .menu-text {
+    display: inline-block;
+    opacity: 1;
+}
+
+/*---------------------------------------------------------- CONTACT US ---------------------------------------------------*/
+.contactus {
+    position: relative;
+    background: url('../img/contactus1.png') no-repeat center center/cover;
+    height: 100vh;
+    display: block;
+    background-size: cover;
+    padding: 0%;
+    width: 100%;
+}
+.contactus::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+   
+}
+
+.contactus h1 {
+    position: absolute;
+    top: 50%;
+    right: 40%;
+    color: #F9F8F2;
+    font-weight: bold;
+    text-align: right;
+    transform: translateY(-50%);
+    font-size: 100px;
+    margin: 0 0 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/*---------------------------------------------------------- TWO IMAGES ---------------------------------------------------*/
+.image-container {
+    display: flex;
+    justify-content: center;
+    gap: 25%;
+    margin-top: 5%;
+}
+
+.image-item {
+    text-align: center;
+}
+
+.image-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.image-item p {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #2e2e2e
+}
+
+/*---------------------------------------------------------- SEND EMAILS ---------------------------------------------------*/
+.send-emails {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%; /* Adjust the width as needed */
+    float: right; /* Align to the right side */
+    margin-right: 10%;
+    margin-top: 2%;
+}
+
+.send-emails h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 2%;
+}
+
+.send-emails p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.send-emails .form-group {
+    margin-bottom: 15px;
+}
+
+.send-emails label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.send-emails input,
+.send-emails textarea {
+    width: 100%;
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.send-emails button {
+    padding: 10px 20px;
+    background: #F07324;
+    border: none;
+    border-radius: 5px;
+    color: #F9F8F2;
+    cursor: pointer;
+    margin-top: 2%;
+}
+
+.send-emails button:hover {
+    background: #d3641f;
+}
+
+.form-group-horizontal {
+    display: flex;
+    gap: 10%; /* Adjust spacing between the fields */
+    align-items: flex-start; /* Align items to the top */
+}
+
+/* Adjust the image and place it to the left side of the form */
+.form-group-horizontal .image-item {
+    flex: 0 0 auto;
+    margin-left: 20px; /* Adjust spacing to move the image more to the left */
+}
+
+.form-group-horizontal .form-group {
+    flex: 1;
+    margin-left: 10px; /* Adjust spacing between the fields */
+}
