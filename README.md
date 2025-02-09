@@ -1,58 +1,3 @@
-<<<<<<< HEAD
-# Laravel Project Setup
-
-## Requirements
-- PHP 8.0 or higher
-- Composer
-- Node.js and npm
-- MySQL or compatible database
-
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/yourproject.git
-   cd yourproject
-   ```
-
-2. Install PHP dependencies:
-   ```bash
-   composer install
-   ```
-
-3. Install JavaScript dependencies:
-   ```bash
-   npm install
-   npm run dev
-   ```
-
-4. Create a copy of the `.env` file:
-   ```bash
-   cp .env.example .env
-   ```
-
-5. Generate the application key:
-   ```bash
-   php artisan key:generate
-   ```
-
-6. Set up the database:
-   - Update `.env` with your database credentials.
-   - Run migrations:
-     ```bash
-     php artisan migrate
-     ```
-
-7. Run the application:
-   ```bash
-   php artisan serve
-   ```
-
-## Additional Commands
-- To compile assets for production:
-  ```bash
-  npm run build
-  ```
-=======
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -119,4 +64,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> 913c2da (uploadingv1)
