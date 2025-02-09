@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
     <script src="{{ asset('assets/js/login.js') }}" defer></script>
@@ -28,17 +29,13 @@
                     <i class="bx bx-hide" id="togglePassword"></i> <!-- Password toggle icon -->
                 </div>
 
-                <a href="#" class="forgot-password">Forgot Password?</a>
+                <a href="{{ route('password.request') }}" class="forgot-password">Forgot Password?</a>
                 <button type="submit" name="login">Login</button>
             </form>
 
 
 
-<<<<<<< HEAD
             <p class="login-signup">Don't have an account? <a href="/register">Sign up</a></p>
-=======
-            <p class="login-signup">Don't have an account? <a href="">Sign up</a></p>
->>>>>>> 913c2da (uploadingv1)
         </div>
 
         <!-- Right side - Video Section -->

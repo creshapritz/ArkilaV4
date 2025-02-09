@@ -35,11 +35,7 @@ class ClientController extends Controller
         Session::put('registration_data', $request->except('password_confirmation'));
 
         // Generate a verification code
-<<<<<<< HEAD
         $verificationCode = rand(100000, 999999); // Replace with a specific code
-=======
-        $verificationCode = 123456; // Replace with a specific code
->>>>>>> 913c2da (uploadingv1)
         Session::put('verification_code', $verificationCode);
         Session::put('verification_code_time', now());
 
@@ -103,56 +99,6 @@ class ClientController extends Controller
 
 
 
-<<<<<<< HEAD
-=======
-    public function resend()
-    {
-
-        $verificationCode = 123456; // Use the same specific code
-        Session::put('verification_code', $verificationCode);
-        Session::put('verification_code_time', now());
-
-        $client = Session::get('registration_data'); // Retrieve temporary registration data
-
-        if (!$client) {
-            return redirect()->route('register')->with('error', 'Session expired. Please restart the registration process.');
-        }
-
-        // Resend email with the new verification code
-        try {
-            $mail = new PHPMailer(true);
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'arkilacarrental123@gmail.com';
-            $mail->Password = 'ahchxwiujsbmdsye';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-
-            $mail->setFrom('arkilacarrental123@gmail.com', 'ARKILA');
-            $mail->addAddress($client['email'], $client['first_name']);
-
-            $mail->isHTML(true);
-            $mail->Subject = 'Your New Verification Code';
-            $mail->Body = "
-                Hello {$client['first_name']},<br><br>
-                <p>Your new verification code is: <strong>{$verificationCode}</strong></p>
-                <p>Please enter this code on the verification page to complete your registration.</p>
-                <p>Thank you,<br>ARKILA Team</p>
-            ";
-
-            $mail->send();
-            return redirect()->route('verification.form')->with('success', 'A new verification code has been sent to your email.');
-        } catch (Exception $e) {
-            Log::error("PHPMailer Error: {$mail->ErrorInfo}");
-            return redirect()->route('verification.form')->with('error', 'Failed to resend verification email. Please try again.');
-        }
-    }
-
-
-
-
->>>>>>> 913c2da (uploadingv1)
 
 
 
@@ -175,10 +121,10 @@ class ClientController extends Controller
         }
 
         // Handle the uploaded files (if any)
-        $frontLicensePath = $request->file('front_license') ? $request->file('front_license')->store('uploads/licenses', 'public') : null;
-        $backLicensePath = $request->file('back_license') ? $request->file('back_license')->store('uploads/licenses', 'public') : null;
-        $frontSecondIdPath = $request->file('front_second_id') ? $request->file('front_second_id')->store('uploads/ids', 'public') : null;
-        $backSecondIdPath = $request->file('back_second_id') ? $request->file('back_second_id')->store('uploads/ids', 'public') : null;
+        $frontLicensePath = $request->hasFile('front_license') ? $request->file('front_license')->store('public/uploads/licenses') : null;
+        $backLicensePath = $request->hasFile('back_license') ? $request->file('back_license')->store('public/uploads/licenses') : null;
+        $frontSecondIdPath = $request->hasFile('front_second_id') ? $request->file('front_second_id')->store('public/uploads/ids') : null;
+        $backSecondIdPath = $request->hasFile('back_second_id') ? $request->file('back_second_id')->store('public/uploads/ids') : null;
 
         try {
             // Save the client data to the database
@@ -209,5 +155,32 @@ class ClientController extends Controller
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
     }
+
+
+
+
+    public function index()
+    {
+        $clients = Client::all(); // Fetch all clients from the database
+        return view('admin.clients', compact('clients'));
+    }
+
+    public function show($id)
+    {
+        $client = Client::findOrFail($id);
+        return view('admin.client-details', compact('client'));
+    }
+    public function archive($id)
+    {
+        $client = Client::findOrFail($id);
+        $client->delete(); // This removes the client (use SoftDeletes if needed)
+
+        return redirect()->route('admin.clients')->with('success', 'Client archived successfully.');
+    }
+
+
+
+
+
 
 }

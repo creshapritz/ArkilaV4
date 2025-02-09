@@ -3,41 +3,228 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
     <title>Rent</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/rent.css')); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="{{ asset('assets/js/landpage.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/rent.css')); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <style>
-    
     .custom-popup {
-        background-color:#F9F8F2; 
+        background-color: #F9F8F2;
     }
+
     .custom-title {
-        color:#F07324; 
+        color: #F07324;
     }
+
     .custom-confirm-button {
-        background-color:#F07324; !important; 
-        color: #ffffff !important;          
+        background-color: #F07324;
+        !important;
+        color: #ffffff !important;
     }
+
     .custom-cancel-button {
-        background-color: #F9F8F2!important;
-        color: #2e2e2e; !important;  
-        border: 1px solid #F07324; !important;          
+        background-color: #F9F8F2 !important;
+        color: #2e2e2e;
+        !important;
+        border: 1px solid #F07324;
+        !important;
     }
+
     .custom-info-icon {
         font-size: 50px;
-        color: #F07324; /* Blue */
+        color: #F07324;
+        /* Blue */
         font-weight: bold;
+    }
+
+    #chatbot-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(240, 115, 36, 0.7);
+        /* Subtle background */
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #chatbot-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    #chatbot-btn img {
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+    }
+
+    /* Chatbot Container */
+    #chatbot-container {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 350px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        border: 1px solid #ddd;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    #chatbot-container.active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+
+    /* Chatbot Header */
+    #chatbot-header {
+        background: #F07324;
+        color: white;
+        padding: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 12px 12px 0 0;
+        font-family: 'sf pro display', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #bot-profile {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    #chatbot-header .close-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    /* Chatbot Messages */
+    #chatbot-messages {
+        height: 350px;
+        overflow-y: auto;
+        padding: 15px;
+        font-family: 'sf pro display', sans-serif;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* User and Bot Messages */
+    .message {
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 18px;
+        font-size: 14px;
+        word-wrap: break-word;
+    }
+
+    .user-message {
+        align-self: flex-end;
+        background: #F07324;
+        color: white;
+        border-radius: 18px 18px 0 18px;
+    }
+
+    .bot-message {
+        align-self: flex-start;
+        background: #F1F1F1;
+        color: black;
+        border-radius: 18px 18px 18px 0;
+    }
+
+    /* Chatbot Input */
+    #chatbot-input {
+        display: flex;
+        border-top: 1px solid #ddd;
+        padding: 10px;
+        background: #ffffff;
+    }
+
+    #chatbot-input input {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        font-family: 'sf pro display', sans-serif;
+        font-size: 14px;
+        background: #F5F5F5;
+    }
+
+    #chatbot-input button {
+        background: #F07324;
+        color: white;
+        border: none;
+        padding: 12px 14px;
+        cursor: pointer;
+        font-family: 'sf pro display', sans-serif;
+        font-size: 14px;
+        border-radius: 8px;
+        margin-left: 8px;
+        transition: background 0.3s ease;
+    }
+
+    #chatbot-input button:hover {
+        background: #E0611D;
     }
 </style>
 
 <body>
+    <!-- Chatbot Button -->
+    <button id="chatbot-btn">
+        <img src="{{ asset('assets/img/whitelogo.png') }}" alt="Chatbot Logo" id="chatbot-logo">
+    </button>
+
+    <!-- Chatbot Window -->
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <img src="{{ asset('assets/img/whitelogo.png') }}" alt="Bot Profile" id="bot-profile">
+            ARKILA Support Agent
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="chatbot-text" placeholder="Type a message...">
+            <button id="chatbot-send">Send</button>
+        </div>
+    </div>
+
     <section>
         <div>
             <!-------------------------------------------------------- NAVBAR------------------------------------------------------------->
@@ -76,7 +263,7 @@
 
                     <li><a href="{{ route('partner') }}"><i class='bx bx-user-plus'></i> <span>Partnership</span></a>
                     </li>
-                    <li><a href="{{ route('settings') }}"><i class='bx bx-cog'></i> <span>Settings</span></a></li>
+                    <!-- <li><a href="{{ route('settings') }}"><i class='bx bx-cog'></i> <span>Settings</span></a></li> -->
 
                     <!-- <li><a href="{{ route('logout') }}"><i class='bx bx-log-out'></i> <span>Logout</span></a></li> -->
                 </ul>
@@ -98,8 +285,6 @@
                     <!-- Booking Form with Background -->
                     <div class="booking-form-container">
                         <div class="booking-form">
-
-                        
                             <div class="input-group">
                                 <label for="destination">Destination</label>
                                 <input type="text" id="destination" placeholder="Enter place" required>
@@ -147,16 +332,12 @@
                     <div class="partner-box">
                         <img src="<?php echo e(asset('assets/img/oplogo8.png')); ?>" alt="Partner 8">
                     </div>
-                    <div class="partner-box">
-                        <img src="<?php echo e(asset('assets/img/oplogo9.png')); ?>" alt="Partner 9">
-                    </div>
-                    <div class="partner-box">
-                        <img src="<?php echo e(asset('assets/img/oplogo10.png')); ?>" alt="Partner 10">
-                    </div>
+
                 </div>
             </section>
 
             <!---------------------------------------- FAQ SECTION ----------------------------------------------------------------------->
+            <!----------------------------------------------------- PALAGAY PO NG FAQS -------------------------------------------------------->
             <div class="faq-box">
                 <div
                     class="relative w-full bg-white px-6 pt-10 pb-8 mt-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10">
@@ -302,7 +483,7 @@
                     </div>
                 </div>
 
-                <!----------------------------------------------------- VIDEO 2 -------------------------------------------------------->
+
                 <section class="video2">
                     <div class="video2">
                         <video src="<?php echo e(asset('assets/img/output.mp4')); ?>" autoplay loop muted></video>
@@ -345,8 +526,11 @@
                         </div>
                     </div>
                     <div class="footer-bottom-links">
-                        <a href="#" class="footer-bottom-link">Terms and Condition</a>
-                        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                        <a href="{{ asset('documents/terms.pdf') }}" target="_blank" class="footer-bottom-link">Terms
+                            and
+                            Condition</a>
+                        <a href="{{ asset('documents/terms.pdf') }}" target="_blank" class="footer-bottom-link">Privacy
+                            Policy</a>
                         <a href="#" class="footer-bottom-link">FAQ's</a>
                     </div>
                     <hr class="footer-line">
@@ -361,6 +545,7 @@
 
 
 
+
             </div>
 
     </section>
@@ -368,6 +553,13 @@
 
     <script>
         document.getElementById('btnSearch').addEventListener('click', (event) => {
+
+            flatpickr("#date", {
+                dateFormat: "Y-m-d",
+                altInput: true,
+                altFormat: "F j, Y",
+                disableMobile: true, // Ensures consistent design on all devices
+            });
             event.preventDefault(); // Prevent default button action
 
             Swal.fire({
@@ -396,6 +588,74 @@
                         timer: 1500,
                         showConfirmButton: false,
                     });
+                }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatbotBtn = document.getElementById('chatbot-btn');
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const chatMessages = document.getElementById('chatbot-messages');
+            const chatInput = document.getElementById('chatbot-text');
+            const sendButton = document.getElementById('chatbot-send');
+
+            // Toggle chatbot visibility
+            chatbotBtn.addEventListener('click', function () {
+                chatbotContainer.classList.toggle('active');
+            });
+
+
+            // Function to add messages in a container with timestamp below
+            function addMessage(sender, message, color, alignment) {
+                let time = new Date().toLocaleTimeString(); // Get current time
+                let messageHtml = `
+            <div style="display: flex; flex-direction: column; align-items: ${alignment}; margin-bottom: 10px;">
+                <div style="max-width: 70%; padding: 10px; border-radius: 10px; background-color: ${color}; color: white;">
+                    <strong>${sender}:</strong> ${message}
+                </div>
+                <span style="font-size: 12px; color: gray; margin-top: 5px;">${time}</span>
+            </div>
+        `;
+                chatMessages.innerHTML += messageHtml;
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
+            }
+
+            // Send message function
+            function sendMessage() {
+                let userMessage = chatInput.value.trim();
+                if (userMessage === "") return;
+
+                addMessage("You", userMessage, "#2e2e2e", "flex-end");
+                chatInput.value = "";
+
+
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        let botMessage = data.reply ? data.reply : "No response received";
+                        addMessage("ARKILA", botMessage, "#F07324", "flex-start");
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        addMessage("ARKILA", "Error: Unable to process request.", "#dc3545", "flex-start"); // Red for errors
+                    });
+            }
+
+            // Send message on button click
+            sendButton.addEventListener('click', sendMessage);
+
+            // Send message on Enter key press
+            chatInput.addEventListener('keypress', function (event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
                 }
             });
         });

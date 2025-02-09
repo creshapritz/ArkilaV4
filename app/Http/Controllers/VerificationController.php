@@ -24,11 +24,7 @@ class VerificationController extends Controller
     public function verifyCode(Request $request)
     {
         $request->validate([
-<<<<<<< HEAD
             'code' => 'required|array|size:6',
-=======
-            'verification_code' => 'required|integer',
->>>>>>> 913c2da (uploadingv1)
         ]);
     
         // Retrieve the stored verification code and timestamp
@@ -48,7 +44,6 @@ class VerificationController extends Controller
         // Code is valid, proceed to the next step
         return redirect()->route('register.complete.submit')->with('success', 'Email verified successfully!');
     }
-<<<<<<< HEAD
 
     public function resend(Request $request)
 {
@@ -103,8 +98,6 @@ class VerificationController extends Controller
     
 
 
-=======
->>>>>>> 913c2da (uploadingv1)
     
 
 

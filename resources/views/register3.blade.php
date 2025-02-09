@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
     <title>REGISTER</title>
     <link href="https://unpkg.com/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
@@ -15,11 +16,7 @@
 
         <div class="image-container">
             <div class="logo-container">
-<<<<<<< HEAD
                 <img src="{{ asset('assets/img/whitelogo.png') }}" alt="Logo" class="logo">
-=======
-                <img src="{{ asset('assets/img/arkila_logo.png') }}" alt="Logo" class="logo">
->>>>>>> 913c2da (uploadingv1)
                 <p class="logo-text">Access a ride <br> that's ready when you are</p>
             </div>
             <img src="{{ asset('assets/img/background1.png') }}">
@@ -66,11 +63,7 @@
                                 <label for="driver-license">Select Driver's License</label>
                                 <select id="driver-license" name="driver_license">
                                     <option value="professional">Professional</option>
-<<<<<<< HEAD
-                                    
-=======
-                                    <option value="non-professional">Non-Professional</option>
->>>>>>> 913c2da (uploadingv1)
+
                                 </select>
                             </div>
 
@@ -290,11 +283,8 @@
                         <div class="form-group new-terms">
                             <input type="checkbox" id="agree-privacy" class="new-custom-checkbox" name="agree_privacy">
                             <label for="agree-privacy">
-<<<<<<< HEAD
-                                I have read and agreed to the <a href="{{ asset('documents/terms.pdf') }}" target="_blank"> Privacy Policy</a>.
-=======
-                                I have read and agreed to the <a href="#"> Privacy Policy</a>.
->>>>>>> 913c2da (uploadingv1)
+                                I have read and agreed to the <a href="{{ asset('documents/terms.pdf') }}"
+                                    target="_blank"> Privacy Policy</a>.
                             </label>
                         </div>
 
@@ -308,6 +298,17 @@
             </form>
         </div>
     </div>
+    <script>
+        function previewImage(event, previewId) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById(previewId);
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 
 </html>

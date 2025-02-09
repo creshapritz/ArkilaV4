@@ -28,16 +28,21 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
+
+
         // Find the client by email
         $client = Client::where('email', $request->email)->first();
 
         if ($client) {
-            if (Hash::check($request->password, $client->password)) {
-<<<<<<< HEAD
-                Auth::login($client);
+            Log::info(json_encode([
+                'Entered Password' => $request->password,
+                'Stored Hashed Password' => $client->password,
+                'Password Match' => Hash::check($request->password, $client->password),
+            ]));
 
-=======
->>>>>>> 913c2da (uploadingv1)
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $client = Auth::user();
+
                 // Password matches
                 $verificationCode = mt_rand(100000, 999999);
                 $expiryTime = now()->addMinutes(10);
@@ -53,8 +58,9 @@ class LoginController extends Controller
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'arkilacarrental123@gmail.com'; // Your email
-                    $mail->Password = 'ahchxwiujsbmdsye'; // Your email app password
+                    $mail->Username = env('MAIL_USERNAME');
+                    $mail->Password = env('MAIL_PASSWORD');
+
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                     $mail->Port = 587;
 
@@ -75,11 +81,7 @@ class LoginController extends Controller
                     $mail->send();
 
                     // Redirect to the verification page
-<<<<<<< HEAD
                     return redirect()->route('loginverify')->with('success', 'Verification code sent to your email!')->with('client_name', $client->first_name);
-=======
-                    return redirect()->route('loginverify')->with('success', 'Verification code sent to your email!');
->>>>>>> 913c2da (uploadingv1)
                 } catch (Exception $e) {
                     Log::error("PHPMailer Error: {$mail->ErrorInfo}");
                     return redirect()->back()->with('error', 'Failed to send verification email. Please try again.');
@@ -163,12 +165,10 @@ class LoginController extends Controller
         Session::put('verification_code_expiry', now()->addMinutes(10));  // 10 minutes expiry
 
         $client = Auth::user(); // Assuming the client is authenticated
-<<<<<<< HEAD
-        
-=======
->>>>>>> 913c2da (uploadingv1)
+
 
         if ($client) {
+            Session::put('client_name', $client->first_name);
             // Send email with the new verification code
             $mail = new PHPMailer(true);
             try {
@@ -202,4 +202,6 @@ class LoginController extends Controller
             return redirect()->route('login')->with('error', 'Session expired. Please log in again.');
         }
     }
+
+
 }

@@ -17,10 +17,24 @@ return new class extends Migration
             $table->string('brand');
             $table->string('type');
             $table->string('location');
-            $table->integer('price_per_day');
-            $table->boolean('availability');
-            $table->string('image')->nullable();
+            $table->decimal('price_per_day', 8, 2);
+            $table->integer('seating_capacity');
+            $table->string('gas_type');
+            $table->string('transmission');
+            $table->string('platenum')->nullable();
+            $table->integer('mileage')->nullable();
+            $table->string('color')->nullable();
+            $table->date('regexpiry')->nullable();
+            $table->string('primary_image')->nullable(); // Image column
+            $table->json('additional_image')->nullable(); // Image column
             $table->timestamps();
+
+
+
+
+
+
+            
         });
         
     }

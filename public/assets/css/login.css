@@ -11,19 +11,11 @@ body {
     color: #2E2E2E;
     background-color: #F9F8F2;
     display: flex;
-<<<<<<< HEAD
     justify-content: flex-start; 
     align-items: center; 
     height: 100vh;
     margin: 0;
     padding: 0; 
-=======
-    justify-content: flex-start; /* Ensures content stays on the left */
-    align-items: center; /* Centers content vertically */
-    height: 100vh;
-    margin: 0;
-    padding: 0; /* Removes padding */
->>>>>>> 913c2da (uploadingv1)
     overflow: hidden; 
 }
 
@@ -46,17 +38,10 @@ body {
 .video-text {
     position: absolute;
     top: 38%;
-<<<<<<< HEAD
     right: 10%;
     transform: translateY(-50%);
     color: white;
     font-size: 4vw;
-=======
-    right: 15%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 60px;
->>>>>>> 913c2da (uploadingv1)
     font-weight: 600;
     text-align: right;
     z-index: 1;
@@ -99,7 +84,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-<<<<<<< HEAD
     align-items: center; 
     width: 50%; 
     height: 100%; 
@@ -110,29 +94,13 @@ body {
 
 .login-form h2 {
     font-size: 60px;
-=======
-    align-items: center; /* Centers form horizontally within its container */
-    width: 50%; /* Occupies left half */
-    height: 100%; /* Full height for vertical alignment */
-    text-align: center; /* Center-align text within the form */
-    margin: 0; /* No extra margins needed */
-    position: relative; /* Ensures proper alignment within this section */
-}
-
-.login-form h2 {
-    font-size: 40px;
->>>>>>> 913c2da (uploadingv1)
     color: #F07324;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .login-form p {
-<<<<<<< HEAD
     color: #2E2E2E;
-=======
-    color: #666;
->>>>>>> 913c2da (uploadingv1)
     margin-bottom: 70px;
     font-size: 16px;
 }
@@ -154,13 +122,8 @@ body {
     border-radius: 4px;
     font-size: 16px;
     box-sizing: border-box;  
-<<<<<<< HEAD
     background-color: #F9F8F2;
    
-=======
-   
-    
->>>>>>> 913c2da (uploadingv1)
 }
 
 .login-form .forgot-password {
@@ -179,11 +142,7 @@ body {
     background-color: #F07324;
     color: white;
     border: none;
-<<<<<<< HEAD
     border-radius: 5px;
-=======
-    border-radius: 10px;
->>>>>>> 913c2da (uploadingv1)
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -217,22 +176,13 @@ body {
 .input-container {
     position: relative;
     display: inline-block;
-<<<<<<< HEAD
     width: 100%; 
     max-width: 350px;
-=======
-    width: 100%; /* Or a specific width */
-    max-width: 350px; /* Match the input's max-width */
->>>>>>> 913c2da (uploadingv1)
 }
 
 .input-container input {
     width: 100%; 
-<<<<<<< HEAD
     padding: 12px 40px 12px 12px; 
-=======
-    padding: 12px 40px 12px 12px; /* Adds space for the icon */
->>>>>>> 913c2da (uploadingv1)
     border: 1px solid #2E2E2E;
     border-radius: 4px;
     font-size: 16px;
@@ -242,11 +192,7 @@ body {
 .input-container i {
     position: absolute;
     top: 50%;
-<<<<<<< HEAD
     right: 12px; 
-=======
-    right: 12px; /* Adjust as needed for spacing */
->>>>>>> 913c2da (uploadingv1)
     transform: translateY(-50%);
     font-size: 20px; 
     color: #2E2E2E; 
@@ -254,7 +200,6 @@ body {
 }
 
 .input-container i:hover {
-<<<<<<< HEAD
     color: #F07324; 
 }
 .login-signup a{
@@ -285,7 +230,4 @@ body {
         justify-content: center; 
         padding: 10px; 
     }
-=======
-    color: #F07324; /* Change color on hover */
->>>>>>> 913c2da (uploadingv1)
 }

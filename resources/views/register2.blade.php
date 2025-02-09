@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
     <title>REGISTER</title>
     <link href="https://unpkg.com/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
     <script src="{{ asset('assets/js/register.js') }}" defer></script>
-<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
@@ -50,28 +50,15 @@
 <body>
 
 
-=======
-</head>
-
-<body>
->>>>>>> 913c2da (uploadingv1)
     <div class="registration-container">
 
         <div class="image-container">
             <div class="logo-container">
-<<<<<<< HEAD
                 <img src="{{ asset('assets/img/whitelogo.png') }}" alt="Logo" class="logo">
                 <p class="logo-text">Access a ride <br> that's ready when you are</p>
             </div>
             <img src="{{ asset('assets/img/background1.png') }}">
             <!-- <img src="{{ asset('assets/img/carlang.png') }}" class="car-image"> -->
-=======
-                <img src="{{ asset('assets/img/arkila_logo.png') }}" alt="Logo" class="logo">
-                <p class="logo-text">Access a ride <br> that's ready when you are</p>
-            </div>
-            <img src="{{ asset('assets/img/background1.png') }}">
-            <!-- <img src="{{ asset('assets/img/car.png') }}" class="car-image"> -->
->>>>>>> 913c2da (uploadingv1)
         </div>
 
         <!-- Right Side (Form) -->
@@ -112,7 +99,6 @@
                         <input type="text" class="code-input" name="code[]" maxlength="1" required />
                         <input type="text" class="code-input" name="code[]" maxlength="1" required />
 
-<<<<<<< HEAD
 
                     </div>
 
@@ -120,14 +106,6 @@
                     <!-- Outside the form -->
                     <div class="resend-code-container">
                         <button type="button" class="resend-code" id="resendCodeBtn">Resend Code</button>
-=======
-                    </div>
-
-                    <!-- Resend Code Button -->
-                    <div class="resend-code-container">
-                        <a href="{{ route('verification.resend') }}" class="resend-code">Resend Code</a>
-
->>>>>>> 913c2da (uploadingv1)
                     </div>
 
                     <!-- Navigation Buttons -->
@@ -137,7 +115,6 @@
                     </div>
                 </div>
             </form>
-<<<<<<< HEAD
             <!-- <form action="{{ route('verification.resend') }}" method="POST" id="resendForm">
                 @csrf
                 <button type="submit" class="resend-code" id="resendCodeBtn">Resend Code</button>
@@ -145,18 +122,10 @@
 
 
 
-=======
-
-            
-            @if (session('error'))
-                <p style="color: red;">{{ session('error') }}</p>
-            @endif
->>>>>>> 913c2da (uploadingv1)
 
         </div>
 
     </div>
-<<<<<<< HEAD
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const codeInputs = document.querySelectorAll('.code-input');
@@ -260,8 +229,6 @@
 
 
     </script>
-=======
->>>>>>> 913c2da (uploadingv1)
 
 </body>
 

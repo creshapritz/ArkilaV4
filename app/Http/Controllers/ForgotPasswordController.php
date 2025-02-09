@@ -8,5 +8,5 @@ use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
-    use SendsPasswordResetEmails;
+   
 }

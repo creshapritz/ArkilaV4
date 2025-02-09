@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar.classList.toggle('expanded');  // Toggle the 'active' class to show/hide the sidebar
     });
 
+   
+
+
+
+
     const leftArrow = document.querySelector('.left-arrow');
     const rightArrow = document.querySelector('.right-arrow');
     const reviewsWrapper = document.querySelector('.reviews-wrapper');
@@ -69,5 +74,22 @@ document.addEventListener('DOMContentLoaded', function () {
             showSlides(slideIndex += 1);
         }, 3000); // Change slide every 3 seconds
     }
+
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        loop: true,
+        centeredSlides: true,
+        freeMode: true,
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 10
+            },
+        }
+    });
+
 });
+
+
 

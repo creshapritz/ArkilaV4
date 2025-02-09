@@ -9,11 +9,6 @@ function togglePassword(fieldId, eyeIcon) {
         eyeIcon.innerHTML = '<i class="bx bx-hide"></i>';
     }
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 913c2da (uploadingv1)
 function validateForm() {
     var firstName = document.getElementById('first_name').value.trim();
     var middleName = document.getElementById('middle_name').value.trim();
@@ -30,7 +25,6 @@ function validateForm() {
 
     // Check required fields
     if (!(firstName && lastName && username && email && password && confirmPassword && dob && contactNumber && emergencyContact && terms)) {
-<<<<<<< HEAD
         Swal.fire({
             icon: 'error',
             title: 'Missing Fields',
@@ -38,15 +32,11 @@ function validateForm() {
             confirmButtonText: 'OK',
             allowOutsideClick: false
         });
-=======
-        alert('Please fill out all required fields.');
->>>>>>> 913c2da (uploadingv1)
         return false;
     }
 
     // Check password match
     if (password !== confirmPassword) {
-<<<<<<< HEAD
         Swal.fire({
             icon: 'error',
             title: 'Password Mismatch',
@@ -54,16 +44,12 @@ function validateForm() {
             confirmButtonText: 'OK',
             allowOutsideClick: false
         });
-=======
-        alert('Passwords do not match.');
->>>>>>> 913c2da (uploadingv1)
         return false;
     }
 
     // Check password strength
     var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
-<<<<<<< HEAD
         Swal.fire({
             icon: 'error',
             title: 'Weak Password',
@@ -74,13 +60,6 @@ function validateForm() {
         return false;
     }
 
-=======
-        alert('Password must be at least 8 characters long and contain uppercase letters, lowercase letters, numbers, and special characters.');
-        return false;
-    }
-
-
->>>>>>> 913c2da (uploadingv1)
     // Calculate age from DOB
     var birthDate = new Date(dob);
     var today = new Date();
@@ -92,7 +71,6 @@ function validateForm() {
 
     // Check age consistency
     if (calculatedAge !== ageInput) {
-<<<<<<< HEAD
         Swal.fire({
             icon: 'error',
             title: 'Age Mismatch',
@@ -103,15 +81,11 @@ function validateForm() {
             background: '#F9F8F2',
             iconColor: '#F07324'
         });
-=======
-        alert('The age you entered does not match your date of birth.');
->>>>>>> 913c2da (uploadingv1)
         return false;
     }
 
     // Check age limit
     if (calculatedAge < 18) {
-<<<<<<< HEAD
         Swal.fire({
             icon: 'error',
             title: 'Underage',
@@ -122,15 +96,11 @@ function validateForm() {
             background: '#F9F8F2',
             iconColor: '#F07324'
         });
-=======
-        alert('You must be at least 18 years old to register.');
->>>>>>> 913c2da (uploadingv1)
         return false;
     }
 
     // Check duplicate contact numbers
     if (contactNumber === emergencyContact) {
-<<<<<<< HEAD
         Swal.fire({
             icon: 'error',
             title: 'Duplicate Contacts',
@@ -141,44 +111,32 @@ function validateForm() {
             background: '#F9F8F2',
             iconColor: '#F07324'
         });
-=======
-        alert('Contact number and emergency contact number cannot be the same.');
->>>>>>> 913c2da (uploadingv1)
         return false;
     }
 
     // All validations passed
-<<<<<<< HEAD
-    Swal.fire({
-        icon: 'success',
-        title: 'Form Validated',
-        text: 'Your form has been successfully validated!',
-        confirmButtonText: 'Proceed',
-        allowOutsideClick: false, 
-        confirmButtonColor: '#F07324',
-        background: '#F9F8F2',
-        iconColor: '#F07324'
-    }).then(() => {
-        localStorage.setItem('currentStep', 2);
-        window.location.href = '/register2';
-    });
+    // Swal.fire({
+    //     icon: 'success',
+    //     title: 'Form Validated',
+    //     text: 'Your form has been successfully validated!',
+    //     confirmButtonText: 'Proceed',
+    //     allowOutsideClick: false, 
+    //     confirmButtonColor: '#F07324',
+    //     background: '#F9F8F2',
+    //     iconColor: '#F07324'
+    // }).then(() => {
+    //     localStorage.setItem('currentStep', 2);
+    //     window.location.href = '/register2';
+    // });
 
-=======
-    console.log("Form validated successfully.");
-    localStorage.setItem('currentStep', 2);
-    window.location.href = '/register2';
->>>>>>> 913c2da (uploadingv1)
     return false; // Prevent form submission after redirection
 }
 
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 913c2da (uploadingv1)
 function highlightStep(step) {
     // Remove active class from all steps and lines
     document.querySelectorAll('.timeline-step').forEach(function (element) {
@@ -243,13 +201,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Get the corresponding step or default to step 1
     const currentStep = pageSteps[currentPath] || 1;
-<<<<<<< HEAD
     // Log current step for debugging
     console.log('Current Step:', currentStep);
-=======
-  // Log current step for debugging
-  console.log('Current Step:', currentStep);
->>>>>>> 913c2da (uploadingv1)
     // Highlight the appropriate step
     highlightStep(currentStep);
 });
@@ -257,13 +210,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-<<<<<<< HEAD
 // Show/Hide Forms
 document.getElementById('self-drive-button').addEventListener('click', function () {
-=======
- // Show/Hide Forms
- document.getElementById('self-drive-button').addEventListener('click', function () {
->>>>>>> 913c2da (uploadingv1)
     document.getElementById('self-drive-form').classList.remove('hidden');
 });
 

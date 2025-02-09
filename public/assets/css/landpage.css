@@ -16,6 +16,7 @@
     transition: width 0.1s ease;
 }
 
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -49,6 +50,8 @@ body {
     padding: 0;
 }
 html, body {
+    margin: 0;
+    padding: 0;
     overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
@@ -109,7 +112,7 @@ html, body {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 999;
     justify-content: space-between;
 }
 
@@ -237,7 +240,7 @@ html, body {
 }
 
 .sidebar ul li {
-    margin: 20px 0;
+    margin: 10px 0;
     width: 100%;
 }
 
@@ -379,9 +382,11 @@ html, body {
 }
 
 .home-content h1 {
-    position: absolute;
+    position:relative;
+    text-align: center;
+    justify-content: center;
     top: 50%;
-    right: 25%;
+    
     color: #F9F8F2;
     font-weight: bold;
     text-align: center;
@@ -395,25 +400,49 @@ html, body {
     color: #F07324;
 }
 
+
 /*--------------------------------------------------------RESPOSIVE DESIGN FOR HOME----------------------------------------*/
 
+
+/* Tablet */
 @media (max-width: 768px) {
-    .home h1 {
-        font-size: 36px;
+    .home-content h1 {
+        font-size: 60px;
+        right: auto;
+        left: 60%;
+        transform: translate(-50%, -50%);
     }
 
-    .home p {
-        font-size: 18px;
+    .content .advertisement {
+        max-width: 100%;
+        height: auto;
+        margin: 0;
     }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
-    .home h1 {
-        font-size: 28px;
+    .home {
+        height: auto;
+        padding: 0;
     }
 
-    .home p {
-        font-size: 16px;
+    #background-video {
+        height: 100vh;
+        object-fit: cover;
+
+    }
+
+    .home-content h1 {
+        font-size: 40px;
+        right: 5%;
+    }
+
+    .content .advertisement {
+        max-width: 100%;
+        height: auto;
+        margin: 0;
+        object-fit: cover;
     }
 }
 
@@ -421,15 +450,14 @@ html, body {
 .advertisement {
     position: relative;
     width: 100%;
-    height: 100vh;
-    background-size: auto;
-    padding: 0%;
-    margin-left: 0rem 0;
+    height: auto; 
+    max-width: 100%; 
+    object-fit: contain; 
+    margin: 0;
 
 }
 
 /*----------------------------------------------------AVAILABLE CARS---------------------------------------------------------*/
-
 .available-cars h2 {
     font-size: 38px;
     color: #F07324;
@@ -437,24 +465,46 @@ html, body {
     text-align: center;
 }
 
-.brands {
+.swiper-container {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.swiper-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 15px;
 }
 
-.brands:hover {
-    opacity: 0.75;
+.swiper-slide {
+    width: 150px; /* Adjust the size of each image */
+    height: auto;
+    margin-right: 20px; /* Space between images */
 }
+
+.brand-img {
+    width: 100%; /* Make images fill the container */
+    height: auto;
+    object-fit: contain;
+}
+
+/* For mobile screens, adjust image sizes and margin */
+@media (max-width: 768px) {
+    .swiper-slide {
+        width: 120px; /* Make images smaller */
+        margin-right: 10px;
+    }
+}
+
+
+
+
+
 
 /*-------------------------------------------------------------OUR PARTNERS-----------------------------------------------*/
 
 .our-partners h2 {
-    font-size: 38px;
+    font-size: 40px;
     color: #F07324;
     margin-bottom: 10px;
     text-align: center;
@@ -487,14 +537,61 @@ html, body {
 }
 
 .partner-box img {
-    width: 70%;
-    height: 70%;
+    width: 100px; 
+    height: 200px; 
     object-fit: contain;
 }
 
 .partner-box:hover {
     transform: scale(1.05);
 }
+
+
+
+
+/* -------------------------------------------------------------responsiveness of our partners-------------------------------------------------*/ 
+
+
+@media (max-width: 768px) {
+    .partners {
+        padding-left: 1in;
+        padding-right: 1in;
+        justify-content: center; /* Center the items */
+        gap: 1rem; /* Adjust the gap between logos */
+    }
+
+    .partner-box {
+        width: 3in; /* Adjust the width of the boxes */
+        height: 1.5in; /* Adjust height for better spacing */
+    }
+
+    .partner-box img {
+        width: 200px; /* Adjust width for tablets */
+        height: 150px; /* Adjust height for tablets */
+    }
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+    .partners {
+        flex-direction: column; /* Stack the partner boxes vertically */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .partner-box {
+        width: 100%; /* Make each partner box take full width */
+        height: auto; /* Adjust height automatically */
+        margin-bottom: 1rem; /* Add space between stacked logos */
+    }
+
+    .partner-box img {
+        width: 150px; /* Adjust width for mobile devices */
+        height: 100px; /* Adjust height for mobile devices */
+    }
+}
+
+
 
 /*-----------------------------------------------------------------------WHY CHOOSE US?----------------------------------------*/
 .reviews-section {
@@ -538,6 +635,7 @@ html, body {
     width: 100%;
     max-width: 960px;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-align: start;
 
 }
 
@@ -580,6 +678,10 @@ html, body {
     margin-top: 10px;
 
 }
+.rating i {
+    font-size: 20px;
+    color: #ffcc00; /* Gold color for stars */
+}
 
 .arrow {
     font-size: 28px;
@@ -615,87 +717,36 @@ html, body {
     display: none;
 }
 
-/*
-.see-more {
-    display: inline-block;
-    padding: 15px 35px;
-    font-size: 18px;
-    color: #F9F8F2;
-    background-color: #F07324;
-    border: 2px solid #191919;
-    border-radius: 15px;
-    text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 30px;
-
-}
-
-.see-more:hover {
-    background-color: #d36018;
-    transform: scale(1.05);
-
-}
-*/
 
 /*--------------------------------------------------------RESPONSIVE FOR REVIEWS SECTION--------------------------------*/
 @media (max-width: 768px) {
-    .reviews-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .reviews-wrapper {
         max-width: 100%;
-        padding: 0 10px;
-        justify-content: start;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        /* flex-direction: column;
-        align-items: center;
-        width: 100%;
-        justify-content: center; */
+        gap: 5px;
     }
-
 
     .review-box {
-        flex: 0 0 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        width: 100%;
-        /* width: 90%;
-        max-width: 300px;
-        margin: 10px 0; */
+        width: 90%;
     }
-
-    .left-arrow,
-    .right-arrow {
-        display: none;
-    }
-
 }
 
 @media (max-width: 480px) {
-    .reviews-section h2 {
-        font-size: 28px;
+    .reviews-wrapper {
+       
+        align-items: center;
     }
 
-    .reviews-section h3 {
-        font-size: 24px;
+    .review-box {
+        width: 100%;
+        margin-bottom: 20px;
     }
-
-    .review-box p {
-        font-size: 14px;
-    }
-
 }
 
 /* --------------------------------------------------HOW TO BOOK SECTION -------------------------------------------------*/
-
 .booking-section {
     text-align: center;
     padding: 0px;
     background-color: #F9F8F2;
-
 }
 
 .booking-section h1 {
@@ -707,7 +758,8 @@ html, body {
     font-size: 18px;
     color: #2E2E2E;
     margin: 10px 0;
-    text-align: justify;
+    text-align: center;
+    line-height: 30px;
     margin-left: 10rem;
     margin-right: 5rem;
 }
@@ -717,63 +769,63 @@ html, body {
     color: #F07324;
 }
 
+/* Center the steps-container and ensure it's responsive */
 .steps-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 75px;
+    gap: 30px;
     flex-wrap: wrap;
     margin-top: 3rem;
-
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
 }
 
-.booking-box p {
-    font-size: 20px;
-    color: #2E2E2E;
-    margin: 10px 0;
-    text-align: justify;
-}
-
+/* Style for individual step-boxes */
 .step-box {
     background-color: #90C6AA;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 10px;
-    width: 350px;
+    width: 300px;
     height: 250px;
     max-width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-left: 5rem;
-    margin-top: 5rem;
-
+    margin-top: 2rem;
 }
 
+/* Images inside step-boxes */
 .step-box img {
-    width: 0.7in;
-    height: 0.7in;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px;
-    margin-top: 3rem;
+    margin-bottom: 15px;
+   
 }
 
+/* Step titles */
 .step-box h3 {
     font-size: 22px;
     color: #333;
     margin-bottom: 1rem;
 }
 
+/* Descriptions inside step-boxes */
 .step-box p {
     font-size: 16px;
     color: #2E2E2E;
     margin-bottom: 10px;
-    margin-left: 2rem;
     text-align: center;
+    justify-content: center;
     margin-left: 5rem;
-    margin-bottom: 3rem;
+    margin-top: -20px;
+   
 }
 
+/* Highlight center step-box */
 .center-box {
     background-color: #F07324;
     border-color: #F07324;
@@ -790,95 +842,57 @@ html, body {
     margin-left: 5rem;
 }
 
+/* Arrow link styles */
 .arrow-link {
-    color: #F9F8F2;
+    font-size: 18px;
+    color: #fff;
     text-decoration: none;
-    font-size: 24px;
-    margin-left: 10px;
-    margin-top: 5rem;
-    transition: transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2rem;
 }
 
 .arrow-link:hover {
-    transform: translateX(5px);
+    font-size: 20px;
+    transition: transform 0.2s ease;
 }
 
-/*------------------------------------------------ Responsivenes for booking section -----------------------------------*/
-
+/* Responsive Design */
 @media (max-width: 768px) {
-    .steps-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-
-    }
-
-    .step-box {
-        width: 90%;
-        max-width: 300px;
-        margin: 10px 0;
-
-    }
-
-    .booking-section h1 {
-        font-size: 30px;
-    }
-
-    .booking-section h2 {
-        font-size: 24px;
-    }
-
     .booking-section p {
-        font-size: 16px;
-    }
-
-    .step-box h3 {
-        font-size: 20px;
-    }
-
-    .step-box p {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .booking-section h1 {
-        font-size: 28px;
-    }
-
-    .booking-section h2 {
-        font-size: 22px;
-        margin: 30px 0 20px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        text-align: justify;
+        margin: 0 20px;
     }
 
     .steps-container {
-        gap: 15px;
+        flex-direction: column; /* Stack steps vertically */
+        gap: 20px;  
+        text-align: center;
+        
     }
 
     .step-box {
-        width: 95%;
-        padding: 15px;
+        width: 90%; /* Full width on smaller screens */
+        height: auto; /* Adjust height to fit content */
+        margin: 0 auto; /* Center align */
     }
 
     .step-box img {
-        width: 120px;
-        height: 120px;
-        margin-bottom: 10px;
+        width: 60px;
+        height: 60px;
     }
-
     .step-box h3 {
-        font-size: 18px;
-        margin: 15px 0 8px;
+        font-size: 20px;
     }
 
     .step-box p {
         font-size: 14px;
-        margin-bottom: 8px;
-    }
-
-    .arrow-link {
-        font-size: 20px;
-        margin-left: 5px;
+        gap: 5px;
+        margin-bottom: 20px;
+        text-align: center;
     }
 }
 
@@ -1111,9 +1125,47 @@ html, body {
         text-align: center;
         margin: 0 auto;
     }
+    .boxes-wanna {
+        display: none; /* Hides the images container */
+    }
 }
 
 /*----------------------------------------------------------------CHEAP CAR----------------------------------------------------*/
+.car-deals-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+   
+}
+
+.nav-buttons {
+    position: absolute;
+    top: 70%; /* Center vertically */
+    right: 50px; /* Adjust position relative to the section */
+    transform: translateY(-50%); /* Center vertically */
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.arrow {
+    background-color: #F07324;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+}
+
+
+
 .cheap-car {
     text-align: center;
 }
@@ -1163,33 +1215,40 @@ html, body {
 
 .car-deals {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
-    padding-left: 2in;
-    padding-right: 1in;
-    gap: 0.5in;
+    gap: 20px; /* Space between the car boxes */
+    transition: transform 0.8s ease-in-out;
+    width: max-content; /* Ensure the width adapts to content */
+}
+.car-deals-container {
+    overflow: hidden; /* Hides the extra items */
+    width: 100%;
+    height: 100vh;
 }
 
 .car-box {
-    width: calc(20% - 1in);
-    height: auto;
-    border: 1px solid #2E2E2E;
-    border-radius: 15px;
-    background-color: #F9F8F2;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
+    flex: 0 0 calc(23% - 20px); /* Display 4 items per row with gaps */
+    margin: 0 10px;
+    max-width: 300px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 
+}
+
+.car-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .car-image {
     width: 100%;
     height: auto;
-    max-height: 2in;
+    max-height: 150px;
     object-fit: cover;
+    border-radius: 4px;
 }
 
 .logo-line {
@@ -1216,7 +1275,7 @@ html, body {
 }
 
 .car-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #2e2e2e;
     text-align: left;
@@ -1227,7 +1286,7 @@ html, body {
 }
 
 .car-description {
-    font-size: 16px;
+    font-size: 14px;
     color: #2e2e2e67;
     text-align: left;
     width: 100%;
@@ -1281,8 +1340,39 @@ html, body {
 
 /*----------------------------------------------------------------VIDEO2----------------------------------------------------*/
 .video2 {
-    padding-top: 0.5in;
+    position: relative;
+    width: 100%;
+    padding-top: 0.5in; /* Default padding for larger screens */
 }
+
+.video2 video {
+    width: 100%; /* Ensure the video scales to the container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100vh; /* Prevent the video from taking too much vertical space */
+    display: block;
+    object-fit: cover; /* Cover the container without distortion */
+}
+
+@media (max-width: 768px) {
+    .video2 {
+        padding-top: 0.3in; /* Reduce padding for medium devices */
+    }
+
+    .video2 video {
+        max-height: 60vh; /* Limit video height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .video2 {
+        padding-top: 0.2in; /* Further reduce padding for small devices */
+    }
+
+    .video2 video {
+        max-height: 50vh; /* Restrict video height for very small devices */
+    }
+}
+
 
 /*----------------------------------------------------------------FOOTER----------------------------------------------------*/
 .footer {
@@ -1292,147 +1382,133 @@ html, body {
     width: 100%;
     position: relative;
     bottom: 0;
-    height: 7in;
     margin: 0;
+    padding: 20px;
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between; /* Distribute space between sections */
-    align-items: flex-start; /* Align items to the start (left) */
-    margin: 0;
-    padding-left: 200px; /* Adjust padding to move content to the left */
-    padding-top: 50px;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
 }
 
 .footer-section {
+    flex: 1 1 300px; /* Sections take up full width on smaller screens */
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the start (left) */
+    align-items: flex-start;
+    margin: 0 30px; /* Adjust the horizontal margin to move it more to the right */
+    padding-left: 50px; /* Add padding on the left for additional spacing */
 }
 
 .footer-logo {
-    width: 150px;
+    width: 120px; /* Adjusted for smaller screens */
     height: auto;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size:20px;
-    position: relative;
-    margin-left:auto;
-    margin-right:200px;
-    padding-bottom: 20px;
-}
-.footer-link {
-    color: #F9F8F2;
-    text-decoration: none;
-    font-size: 20px;
-    margin: 5px 0;
-    position: relative;
-    margin-left: 2rem;
+    font-size: 16px;
+    gap: 10px; /* Adds spacing between links */
 }
 
-.footer-link:hover {
-    font-weight: bold;
-}
-
-.footer-link:hover::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #fff;
-}
-
+.footer-link, 
 .payment-method-link {
     color: #F9F8F2;
     text-decoration: none;
-    font-size: 20px;
-    margin: 5px 0;
-    position: relative;
+    font-size: 16px; /* Adjust font size for smaller screens */
 }
 
-.center-section {
-    text-align: left;
-    align-items: flex-start; /* Center items within the section */
-    margin-left: 200px; /* Push the section to the center */
-    margin-right: auto; /* Push the section to the center */
-    font-size: 30px;
-    margin-top: 50px;
-}
-
-.right-section {
-    text-align: left;
-    align-items: flex-start; /* Align items to the start (left) */
-    margin-left: auto; /* Push the section to the right */
-    margin-right: 100px; /* Adjust margin to align with the payment method */
-    font-size: 30px;
-    margin-top: 50px;
+.footer-link:hover, 
+.payment-method-link:hover {
+    font-weight: bold;
 }
 
 .footer-line {
     border: none;
-    border-top: 1px solid #ffff;
+    border-top: 1px solid #fff;
     width: 100%;
-    margin-top: 20px;
-    position: center;
+    margin: 10px 0;
 }
 
 .footer-bottom-links {
     display: flex;
-    justify-content: flex-end;
-    gap: 50px;
-    margin-right: 100px;
+    flex-wrap: wrap; /* Allows wrapping for small screens */
+    gap: 10px;
+    justify-content: center; /* Center-align on smaller screens */
+    padding: 10px;
 }
 
 .footer-bottom-link {
     color: #F9F8F2;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px; /* Smaller font for small screens */
 }
-
-.footer-bottom-link:hover {
-    font-weight: bold;
-}
-
 
 .footer-social-media {
     display: flex;
-    justify-content:space-between;
-    align-items: center;           /* Align items vertically in the center */
-    padding: 10px;
-    gap: 50px;
-    margin-right: 150px;
-    margin-top: 40px;
-    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    text-align: center;
 }
 
 .social-media-link i {
-    font-size: 24px;
+    font-size: 20px; /* Smaller icon size */
     color: #F9F8F2;
-
 }
 
 .social-media-link:hover i {
-    color: #90C6AA; 
+    color: #90C6AA;
 }
 
 .footer-social-media p {
-    margin-top: 2px;
-    font-size: 16px;
-    text-align: left;
-    margin-right: 870px
+    font-size: 14px;
+    margin: 0;
 }
 
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 10px;
+    }
 
+    .footer-section {
+        flex: 1 1 100%; /* Full width for each section */
+    }
 
+    .footer-links, 
+    .footer-bottom-links {
+        text-align: center; /* Center-align links on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo {
+        width: 100px; /* Smaller logo for very small screens */
+    }
+
+    .footer-link, 
+    .payment-method-link, 
+    .footer-bottom-link {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .social-media-link i {
+        font-size: 18px; /* Smaller icons */
+    }
+
+    .footer-social-media p {
+        font-size: 12px; /* Smaller text */
+    }
+}
 
 
 

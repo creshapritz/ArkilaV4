@@ -222,7 +222,7 @@ body {
 }
 
 .sidebar ul li {
-    margin: 20px 0;
+    margin: 10px 0;
     width: 100%;
 }
 
@@ -359,7 +359,7 @@ body {
 .input-group {
     display: flex;
     flex-direction: column; 
-    min-width: 200px; 
+    font-family: 'SF Pro Display', sans-serif;
 }
 
 .input-group label {
@@ -376,15 +376,15 @@ body {
     outline: none;
 }
 .btn-search {
-    width: 100%; /* Matches input width */
-    padding: 11px; /* Matches input padding */
+    width: 100%;
+    padding: 11px; 
     background-color: #F07324;
     color: #F9F8F2;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    box-sizing: border-box; /* Ensures consistent sizing */
+    box-sizing: border-box; 
     margin-top: 20px;
 }
 
@@ -403,6 +403,7 @@ body {
 .input-group {
     flex: 1; 
     min-width: 200px; 
+    font-family:'SF Pro Display', sans-serif;
 }
 
 .input-group:last-of-type {
@@ -414,14 +415,115 @@ body {
     min-width: 200px; 
 }
 
+/* Date Input Styling */
+.input-group input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-family: 'SF Pro Display', sans-serif;
+    border: 2px solid #cccccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #333333;
+    appearance: none; /* Remove default browser styles */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder Styling for Date */
+.input-group input[type="date"]::placeholder {
+    color: #aaaaaa;
+    font-style: italic;
+}
+
+/* Focus Effect */
+.input-group input[type="date"]:focus {
+    border-color: #F07324;
+    box-shadow: 0 4px 8px rgba(240, 115, 36, 0.2);
+    background-color: #fafafa;
+}
+
+/* Hover Effect */
+.input-group input[type="date"]:hover {
+    border-color: #F07324;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Optional: Calendar Icon */
+.input-group input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray"%3E%3Cpath d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM5 20V9h14v11H5zm2-9h5v5H7v-5z"/%3E%3C/svg%3E');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    opacity: 0.8;
+}
+
+
+.input-group input {
+    width: 100%;
+    padding: 13px;
+    font-size: 1rem;
+    border: 1px solid #2E2E2E;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.btn-search {
+    padding: 13px 20px;
+    background-color: #F07324;
+    color: #F9F8F2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-end; /* Aligns the button to the bottom */
+    max-width: 150px;
+}
+
+.btn-search:hover {
+    background-color: #C55D1E;
+}
+
+
+
+/* Flatpickr Custom Styling */
+.flatpickr-calendar {
+    background-color: #F9F8F2;
+    border: 1px solid #F07324;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: 'SF Pro Display', sans-serif;
+    color: #333;
+}
+
+.flatpickr-day {
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.flatpickr-day:hover {
+    background-color: #F07324;
+    color: #fff;
+}
+
+.flatpickr-day.today {
+    background-color: #C55D1E;
+    color: #fff;
+    font-weight: bold;
+}
+
 
 /* ------------------------------------------------------------------------------------------------------------------------------ */
-
 .search-results {
     text-align: center;
     padding: 20px;
 }
-
 
 .car-list {
     display: flex;
@@ -430,14 +532,13 @@ body {
     align-items: center;
 }
 
-
 .car-card {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 90%;
     max-width: 800px;
-    padding: 15px;
+    padding: 20px;
     background-color: #f9f8f2;
     border: 1px solid #d1d1d1;
     border-radius: 10px;
@@ -446,27 +547,30 @@ body {
 }
 
 .car-card:hover {
-    
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .car-left {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center; 
+    align-items: center; 
     gap: 10px;
     position: relative;
+    height: 200px; 
 }
 
 .car-image {
-    width: 100%;
-    height: auto;
+    width: 200px; 
+    height: 120px;  
+    object-fit: cover;  
     display: block;
+    border-radius: 8px; 
+    margin-top: 60px;
 }
 
 .car-logo {
     position: absolute;
-    bottom: -10px; 
+    bottom: -60px; 
     left: -10px; 
     width: 50px; 
     height: auto;
@@ -479,8 +583,9 @@ body {
 }
 
 .car-center h3 {
-    font-size: 18px;
+    font-size: 30px; 
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .car-center p {
@@ -490,11 +595,30 @@ body {
 }
 
 
+.car-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.car-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.car-info .info-item i {
+    font-size: 20px; 
+    color: #f07324; 
+}
+
 .car-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
+    margin-top: auto;
 }
 
 .price {
@@ -512,10 +636,45 @@ body {
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s ease;
+    margin-top: 10px;
 }
 
 .btn-book:hover {
     background-color: #d1621e;
+}
+
+/* Features List */
+.features {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #2E2E2E;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.features li {
+    margin: 5px 0;
+    flex: 1 0 30%; 
+    text-align: center;
+}
+.features li i{
+    color: #f07324;
+}
+.car-center p.location {
+    font-size: 20px; 
+    color: #2E2E2E;
+    margin-top: 15px;
+    background-color: rgba(222, 221, 221, 0.5); 
+    padding: 10px; 
+    border-radius: 5px;
+}
+.car-center p.location i {
+    font-size: 20px; 
+    color: #F07324; 
 }
 
 
@@ -550,3 +709,194 @@ body {
     font-size: 16px;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------------ */
+
+/*----------------------------------------------------------------VIDEO2----------------------------------------------------*/
+.video2 {
+    position: relative;
+    width: 100%;
+    padding-top: 0.5in; /* Default padding for larger screens */
+}
+
+.video2 video {
+    width: 100%; /* Ensure the video scales to the container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100vh; /* Prevent the video from taking too much vertical space */
+    display: block;
+    object-fit: cover; /* Cover the container without distortion */
+}
+
+@media (max-width: 768px) {
+    .video2 {
+        padding-top: 0.3in; /* Reduce padding for medium devices */
+    }
+
+    .video2 video {
+        max-height: 60vh; /* Limit video height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .video2 {
+        padding-top: 0.2in; /* Further reduce padding for small devices */
+    }
+
+    .video2 video {
+        max-height: 50vh; /* Restrict video height for very small devices */
+    }
+}
+
+/*----------------------------------------------------------------FOOTER----------------------------------------------------*/
+.footer {
+    background-color: #F07324;
+    color: #fff;
+    text-align: left;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin: 0;
+    padding: 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+.footer-section {
+    flex: 1 1 300px; /* Sections take up full width on smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 30px; /* Adjust the horizontal margin to move it more to the right */
+    padding-left: 50px; /* Add padding on the left for additional spacing */
+}
+
+.footer-logo {
+    width: 120px; /* Adjusted for smaller screens */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+    gap: 10px; /* Adds spacing between links */
+}
+
+.footer-link, 
+.payment-method-link {
+    color: #F9F8F2;
+    text-decoration: none;
+    font-size: 16px; /* Adjust font size for smaller screens */
+}
+
+.footer-link:hover, 
+.payment-method-link:hover {
+    font-weight: bold;
+}
+
+.footer-line {
+    border: none;
+    border-top: 1px solid #fff;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.footer-bottom-links {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping for small screens */
+    gap: 10px;
+    justify-content: center; /* Center-align on smaller screens */
+    padding: 10px;
+}
+
+.footer-bottom-link {
+    color: #F9F8F2;
+    text-decoration: none;
+    font-size: 14px; /* Smaller font for small screens */
+}
+
+.footer-social-media {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.social-media-link i {
+    font-size: 20px; /* Smaller icon size */
+    color: #F9F8F2;
+}
+
+.social-media-link:hover i {
+    color: #90C6AA;
+}
+
+.footer-social-media p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 10px;
+    }
+
+    .footer-section {
+        flex: 1 1 100%; /* Full width for each section */
+    }
+
+    .footer-links, 
+    .footer-bottom-links {
+        text-align: center; /* Center-align links on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo {
+        width: 100px; /* Smaller logo for very small screens */
+    }
+
+    .footer-link, 
+    .payment-method-link, 
+    .footer-bottom-link {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .social-media-link i {
+        font-size: 18px; /* Smaller icons */
+    }
+
+    .footer-social-media p {
+        font-size: 12px; /* Smaller text */
+    }
+}
+
+
+
+.navbar-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover; /* Ensures the image is not distorted */
+    vertical-align: middle;
+}
+.navbar-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover; /* Ensures the image is not distorted */
+    vertical-align: middle;
+}

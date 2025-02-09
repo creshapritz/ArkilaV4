@@ -35,6 +35,8 @@ body {
     font-style: normal;
 }
 html, body {
+    margin: 0;
+    padding: 0;
     overflow-x: hidden; 
 }
 
@@ -42,25 +44,46 @@ html, body {
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-
-        align-items: flex-start;
-
+        align-items: center;
+        padding: 10px 0; 
     }
 
-    .logo {
+    .navbar-logo {
         padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        width: 100%; 
+        margin-bottom: 15px; 
+    }
 
+    .navbar-logo img {
+        width: 80px; 
+        height: auto; 
+        margin-bottom: 10px; 
     }
 
     .button-con {
         margin-top: 10px;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        width: 100%; 
+        gap: 10px; 
     }
 
-    .login-button,
-    .partner-button {
-        margin-right: 10px;
+    .btn-login,
+    .btn-partner {
+        margin: 0; 
+        width: 90%; 
+        max-width: 300px; 
+        text-align: center; 
+        padding: 12px 0;
+    }
 
+    .btn-login:hover,
+    .btn-partner:hover {
+        font-weight: bold; 
     }
 }
 
@@ -86,7 +109,7 @@ html, body {
 }
 
 .navbar-logo {
-    height: 100px;
+    height: 110px;
     padding-left: 120px;
     width: auto;
 }
@@ -105,7 +128,7 @@ html, body {
 }
 
 .logo img {
-    height: 100px;
+    height: 70px;
     padding-left: 80px;
     width: auto;
 }
@@ -192,7 +215,7 @@ html, body {
 
 /*-----------------------------------------------------SIDEBAR-------------------------------------------------------------------*/
 .sidebar {
-    background-color: #F9F8F2;
+    background-color: rgba(249, 248, 242, 0.8);
     width: 60px;
     height: 100%;
     flex-direction: column;
@@ -209,7 +232,7 @@ html, body {
 /* --------------------------------------------------------------------EXPANDING SIDEBAR-------------------------------------- */
 .sidebar.expanded {
     width: 240px;
-    background-color: #F9F8F2;
+    background-color: rgba(249, 248, 242, 0.8);
 }
 
 .sidebar ul {
@@ -220,7 +243,7 @@ html, body {
 }
 
 .sidebar ul li {
-    margin: 20px 0;
+    margin: 10px 0;
     width: 100%;
 }
 
@@ -237,7 +260,7 @@ html, body {
 }
 
 .sidebar ul li a:hover {
-    background-color: #C6C5C0;
+    background-color: #F9F8F2;
     box-shadow: #C6C5C0;
 }
 
@@ -278,7 +301,6 @@ html, body {
 
 .menu-text {
     display: none;
-    color: #2E2E2E;
     margin-left: 15px;
     font-weight: bold;
     font-size: 35px;
@@ -289,8 +311,9 @@ html, body {
 .sidebar.expanded .menu-text {
     display: inline-block;
     opacity: 1;
+    color: #2E2E2E;
+    font-weight: 600;
 }
-
 /* ---------------------------------------------------RESPONSIVE DESIGN FOR SIDEBAR------------------------------------------- */
 @media (max-width: 768px) {
     .sidebar {
@@ -318,14 +341,27 @@ html, body {
     }
 }
 
+
 /* ---------------------------------------------------IMAGE1------------------------------------------- */
 .navbar-image {
     position: relative;
-    background: url('../img/vehicles.png') no-repeat center center;
+    background: url('../img/vehicles.jpg') no-repeat center center;
     background-size: cover;
     width: 100%;
     height: 100vh;
+    
 }
+.navbar-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Black shadow overlay with 50% opacity */
+    z-index: 1; /* Make sure the overlay appears above the background but below the content */
+}
+
 
 .navbar-content h1 {
     position: absolute;
@@ -338,7 +374,30 @@ html, body {
     margin: 0;
     text-shadow: 2px 2px 4px #000000;
     text-align: center;
+    z-index: 2; /* Ensure the text appears above the overlay */
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .navbar-content h1 {
+        font-size: 80px; /* Smaller font size for medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-content h1 {
+        font-size: 60px; /* Smaller font size for tablets */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar-content h1 {
+        font-size: 40px; /* Smaller font size for mobile screens */
+    }
+}
+
+/* ---------------------------------------------------reliable------------------------------------------- */ 
+
 
 
 .reliable-content {
@@ -348,24 +407,25 @@ html, body {
     align-items: center;
     flex-direction: column;
     padding: 50px 0;
+    text-align: center;
 }
 
 .reliable-content h1 {
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
     color: #F07324;
     align-items: center;
     margin-top: -20px;
-    margin-right: -10%;
+    margin-right: 0;
 }
 
 .reliable-content h3 {
-    font-size: 28px;
+    font-size: 35px;
     font-weight: bold;
     color: #F07324;
     align-items: center;
     margin-top: 40px;
-    margin-right: -10%;
+    margin-right: 0;
 }
 
 .reliable-content p {
@@ -373,10 +433,14 @@ html, body {
     color: #2E2E2E;
     align-items: center;
     text-align: center;
-    margin-top: 10px;
-    margin-left: 18%;
-    margin-right: 10%;
+    margin-top: 5px;
+    line-height: 1.5;
+    margin-left: 0; /* Remove margin-left */
+    margin-right: 0; /* Remove margin-right */
+    max-width: 80%; 
 }
+
+/* ------------------------------------------- */
 
 .suv-section,
 .suv-section1 {
@@ -390,6 +454,10 @@ html, body {
 .suv-text1 {
     flex: 1;
     padding-right: 20px;
+    display: flex;
+    flex-direction: column; /* Stack the elements vertically */
+    justify-content: space-between; /* Align elements evenly */
+    
 }
 
 .suv-text h2,
@@ -397,8 +465,8 @@ html, body {
     font-size: 38px;
     font-weight: bold;
     color: #F07324;
-    margin-left: 45%;
-    align-items: center;
+    margin: 0; /* Remove default margin */
+    text-align: center;
 
 }
 
@@ -406,8 +474,9 @@ html, body {
 .suv-text1 p {
     font-size: 20px;
     color: #2E2E2E;
-    margin-left: 30%;
-    margin-right: 15%;
+    margin: 10px 0; /* Add margin for spacing */
+    margin-left: 20%;
+    text-align: left;
 }
 
 .suv-image,
@@ -428,8 +497,7 @@ html, body {
 .suv-text .proceed-button,
 .suv-text1 .proceed-button {
     display: block;
-    margin: 20px auto;
-    margin-right: 12rem;
+    margin: 20px auto; /* Center the button */
     padding: 10px 20px;
     font-size: 18px;
     color: #F9F8F2;
@@ -446,16 +514,50 @@ html, body {
     background-color: #F07324; /* Change to orange on hover */
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .suv-section,
+    .suv-section1 {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+    }
+
+    .suv-image,
+    .suv-image1 {
+        text-align: center; /* Center the image */
+        margin-top: 0; /* Reset negative margin */
+    }
+
+    .suv-image img,
+    .suv-image1 img {
+        max-width: 100%; /* Scale image for smaller screens */
+        margin: 0 auto; /* Center image */
+    }
+
+    .suv-text,
+    .suv-text1 {
+        padding-right: 0; /* Remove extra padding */
+        text-align: center; /* Center align text */
+        
+    }
+
+    .suv-text p,
+    .suv-text1 p {
+        margin-left: 0; /* Reset left margin */
+        text-align: left; /* Center text for smaller screens */
+        margin-left: 20%;
+    }
+}
+
 /*---------------------------------------------------------- FAQ SECTION ---------------------------------------------------*/
 .faq-box {
     background-color: #F07324;
     width: 100%;
-    height: 50rem;
+    height: auto; /* Allow height to adjust based on content */
 }
 
 details {
     cursor: pointer;
-
 }
 
 details summary {
@@ -511,7 +613,6 @@ details p {
     margin-right: 5rem;
     font-size: 18px;
     font-weight: normal;
-
 }
 
 .faqs-header p {
@@ -519,7 +620,6 @@ details p {
     font-size: 50px;
     margin-top: -20px;
     color: #F9F8F2;
-
 }
 
 .faqs-header h2 {
@@ -529,9 +629,119 @@ details p {
     font-size: 28px;
     color: #F9F8F2;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .faq-box {
+        padding: 20px;
+    }
+
+    .faqs-header p {
+        font-size: 40px;
+    }
+
+    .faqs-header h2 {
+        font-size: 24px;
+    }
+
+    details summary {
+        font-size: 18px;
+        margin-left: 10rem; /* Adjust margin to fit smaller screens */
+        margin-right: 2rem;
+    }
+
+    details p {
+        font-size: 16px;
+        margin-left: 10rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .faq-box {
+        padding: 10px;
+    }
+
+    .faqs-header p {
+        font-size: 28px;
+    }
+
+    .faqs-header h2 {
+        font-size: 20px;
+    }
+
+    details summary {
+        font-size: 16px;
+        margin-left: 5rem; /* Adjust margin further for smaller screens */
+        margin-right: 2rem;
+    }
+
+    details p {
+        font-size: 14px;
+        margin-left: 5rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .faq-box {
+        padding: 10px;
+    }
+
+    .faqs-header p {
+        font-size: 24px;
+    }
+
+    .faqs-header h2 {
+        font-size: 18px;
+    }
+
+    details summary {
+        font-size: 14px;
+        margin-left: 3rem; /* Adjust margin for very small screens */
+        margin-right: 2rem;
+    }
+
+    details p {
+        font-size: 12px;
+        margin-left: 3rem;
+        margin-right: 2rem;
+    }
+}
+
 /*----------------------------------------------------------------VIDEO2----------------------------------------------------*/
 .video2 {
-    padding-top: 0.5in;
+    position: relative;
+    width: 100%;
+    padding-top: 0.5in; /* Default padding for larger screens */
+}
+
+.video2 video {
+    width: 100%; /* Ensure the video scales to the container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100vh; /* Prevent the video from taking too much vertical space */
+    display: block;
+    object-fit: cover; /* Cover the container without distortion */
+}
+
+@media (max-width: 768px) {
+    .video2 {
+        padding-top: 0.3in; /* Reduce padding for medium devices */
+    }
+
+    .video2 video {
+        max-height: 60vh; /* Limit video height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .video2 {
+        padding-top: 0.2in; /* Further reduce padding for small devices */
+    }
+
+    .video2 video {
+        max-height: 50vh; /* Restrict video height for very small devices */
+    }
 }
 
 /*----------------------------------------------------------------FOOTER----------------------------------------------------*/
@@ -542,151 +752,130 @@ details p {
     width: 100%;
     position: relative;
     bottom: 0;
-    height: 7in;
     margin: 0;
+    padding: 20px;
 }
 
 .footer-content {
     display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
     justify-content: space-between;
-    /* Distribute space between sections */
-    align-items: flex-start;
-    /* Align items to the start (left) */
-    margin: 0;
-    padding-left: 200px;
-    /* Adjust padding to move content to the left */
-    padding-top: 50px;
+    gap: 20px;
+    padding: 20px;
 }
 
 .footer-section {
+    flex: 1 1 300px; /* Sections take up full width on smaller screens */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Align items to the start (left) */
+    margin: 0 30px; /* Adjust the horizontal margin to move it more to the right */
+    padding-left: 50px; /* Add padding on the left for additional spacing */
 }
 
 .footer-logo {
-    width: 150px;
+    width: 120px; /* Adjusted for smaller screens */
     height: auto;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 20px;
-    position: relative;
-    margin-left: auto;
-    margin-right: 200px;
-    padding-bottom: 20px;
+    font-size: 16px;
+    gap: 10px; /* Adds spacing between links */
 }
 
-.footer-link {
-    color: #F9F8F2;
-    text-decoration: none;
-    font-size: 20px;
-    margin: 5px 0;
-    position: relative;
-    margin-left: 2rem;
-}
-
-.footer-link:hover {
-    font-weight: bold;
-}
-
-.footer-link:hover::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #fff;
-}
-
+.footer-link, 
 .payment-method-link {
     color: #F9F8F2;
     text-decoration: none;
-    font-size: 20px;
-    margin: 5px 0;
-    position: relative;
+    font-size: 16px; /* Adjust font size for smaller screens */
 }
 
-.center-section {
-    text-align: left;
-    align-items: flex-start;
-    /* Center items within the section */
-    margin-left: 200px;
-    /* Push the section to the center */
-    margin-right: auto;
-    /* Push the section to the center */
-    font-size: 30px;
-    margin-top: 50px;
-}
-
-.right-section {
-    text-align: left;
-    align-items: flex-start;
-    /* Align items to the start (left) */
-    margin-left: auto;
-    /* Push the section to the right */
-    margin-right: 100px;
-    /* Adjust margin to align with the payment method */
-    font-size: 30px;
-    margin-top: 50px;
+.footer-link:hover, 
+.payment-method-link:hover {
+    font-weight: bold;
 }
 
 .footer-line {
     border: none;
-    border-top: 1px solid #ffff;
+    border-top: 1px solid #fff;
     width: 100%;
-    margin-top: 20px;
-    position: center;
+    margin: 10px 0;
 }
 
 .footer-bottom-links {
     display: flex;
-    justify-content: flex-end;
-    gap: 50px;
-    margin-right: 100px;
+    flex-wrap: wrap; /* Allows wrapping for small screens */
+    gap: 10px;
+    justify-content: center; /* Center-align on smaller screens */
+    padding: 10px;
 }
 
 .footer-bottom-link {
     color: #F9F8F2;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px; /* Smaller font for small screens */
 }
-
-.footer-bottom-link:hover {
-    font-weight: bold;
-}
-
 
 .footer-social-media {
     display: flex;
-    justify-content: flex-end;
-    gap: 50px;
-    margin-right: 150px;
-    margin-top: 40px;
-    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    text-align: center;
 }
 
 .social-media-link i {
-    font-size: 24px;
+    font-size: 20px; /* Smaller icon size */
     color: #F9F8F2;
-
 }
 
 .social-media-link:hover i {
     color: #90C6AA;
-    /* Change to your desired hover color */
 }
 
 .footer-social-media p {
-    margin-top: 2px;
-    font-size: 16px;
-    text-align: left;
-    margin-right: 870px
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 10px;
+    }
+
+    .footer-section {
+        flex: 1 1 100%; /* Full width for each section */
+    }
+
+    .footer-links, 
+    .footer-bottom-links {
+        text-align: center; /* Center-align links on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo {
+        width: 100px; /* Smaller logo for very small screens */
+    }
+
+    .footer-link, 
+    .payment-method-link, 
+    .footer-bottom-link {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .social-media-link i {
+        font-size: 18px; /* Smaller icons */
+    }
+
+    .footer-social-media p {
+        font-size: 12px; /* Smaller text */
+    }
 }

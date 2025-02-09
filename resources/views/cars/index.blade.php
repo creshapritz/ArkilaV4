@@ -34,7 +34,7 @@
             <div class="car-list">
                 @foreach($cars as $car)
                 <div class="car-card">
-                    <img src="{{ $car->image }}" alt="{{ $car->name }}">
+                    <img src="{{ $car->primary_image }}" alt="{{ $car->name }}">
                     <h3>{{ $car->name }}</h3>
                     <p>Brand: {{ $car->brand }}</p>
                     <p>Type: {{ $car->type }}</p>

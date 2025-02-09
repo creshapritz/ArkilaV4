@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
     <title>About Us</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -12,9 +13,192 @@
     <script src="{{ asset('assets/js/landpage.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <style>
+        /* Chatbot Button */
+        #chatbot-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(240, 115, 36, 0.7);
+            /* Subtle background */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #chatbot-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        #chatbot-btn img {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+        }
+
+        /* Chatbot Container */
+        #chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            visibility: hidden;
+            overflow: hidden;
+        }
+
+        #chatbot-container.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        /* Chatbot Header */
+        #chatbot-header {
+            background: #F07324;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+            font-family: 'sf pro display',sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #bot-profile {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #chatbot-header .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Chatbot Messages */
+        #chatbot-messages {
+            height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            font-family: 'sf pro display',sans-serif;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* User and Bot Messages */
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: #F07324;
+            color: white;
+            border-radius: 18px 18px 0 18px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: #F1F1F1;
+            color: black;
+            border-radius: 18px 18px 18px 0;
+        }
+
+        /* Chatbot Input */
+        #chatbot-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background: #ffffff;
+        }
+
+        #chatbot-input input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            font-family: 'sf pro display',sans-serif;
+            font-size: 14px;
+            background: #F5F5F5;
+        }
+
+        #chatbot-input button {
+            background: #F07324;
+            color: white;
+            border: none;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-family: 'sf pro display',sans-serif;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: 8px;
+            transition: background 0.3s ease;
+        }
+
+        #chatbot-input button:hover {
+            background: #E0611D;
+        }
+    </style>
+
+
 </head>
 
 <body>
+
+    <button id="chatbot-btn">
+        <img src="{{ asset('assets/img/whitelogo.png') }}" alt="Chatbot Logo" id="chatbot-logo">
+    </button>
+
+    <!-- Chatbot Window -->
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <img src="{{ asset('assets/img/whitelogo.png') }}" alt="Bot Profile" id="bot-profile">
+            ARKILA Support Agent
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="chatbot-text" placeholder="Type a message...">
+            <button id="chatbot-send">Send</button>
+        </div>
+    </div>
+
+
+
+
 
     <div>
         <!-------------------------------------------------------- NAVBAR------------------------------------------------------------->
@@ -53,9 +237,9 @@
 
                 <li><a href="{{ route('partner') }}"><i class='bx bx-user-plus'></i> <span>Partnership</span></a></li>
 
-                <li><a href="{{ route('settings') }}"><i class='bx bx-cog'></i> <span>Settings</span></a></li>
+                <!-- <li><a href="{{ route('settings') }}"><i class='bx bx-cog'></i> <span>Settings</span></a></li> -->
 
-                <li><a href="{{ route('logout') }}"><i class='bx bx-log-out'></i> <span>Logout</span></a></li>
+                <!-- <li><a href="{{ route('logout') }}"><i class='bx bx-log-out'></i> <span>Logout</span></a></li> -->
             </ul>
         </div>
         <!----------------------------------------ABOUT US ----------------------------------------------------------------------->
@@ -66,50 +250,33 @@
             </div>
         </section>
         <!---------------------------------------- IMAGE 1 ----------------------------------------------------------------------->
-        <div class="square">
-            <img src="<?php echo e(asset('assets/img/auimg2.png')); ?>" alt="Square Image">
-            <h1>DISCOVER ARKILA: </h1>
-            <h2> Reliable Rides for Every Journey</h2>
-            <p>Founded in 2024, ARKILA was created to make car rentals in Rizal convenient, affordable, and accessible
-                for
-                everyone. We started with a mission to provide flexible and reliable car rental solutions, tailored to
-                meet
-                the diverse needs of our customers. Whether you're planning a quick day trip, need a vehicle for an
-                extended
-                period, or require transport for a special occasion, ARKILA offers a wide selection of well-maintained
-                vehicles to suit any journey.</p>
-            <p>Our team comprises friendly, dedicated staff members committed to exceptional service. We understand the
-                importance of a smooth rental experience, which is why we prioritize timely query responses and
-                personalized
-                support for every customer. With a diverse fleet and drivers known for their professionalism and local
-                expertise, ARKILA ensures that every trip is memorable and worry-free.
-            </p>
-            <p>
+        <section class="about-square">
+            <div class="square">
+                <img src="<?php echo e(asset('assets/img/auimg2.jpg')); ?>" alt="Square Image">
+                <h1>DISCOVER ARKILA: </h1>
+                <h2> Reliable Rides for Every Journey</h2>
+                <p>Founded in 2024, ARKILA was created to make car rentals in Rizal convenient, affordable, and
+                    accessible
+                    for
+                    everyone. We started with a mission to provide flexible and reliable car rental solutions, tailored
+                    to
+                    meet
+                    the diverse needs of our customers. Whether you're planning a quick day trip, need a vehicle for an
+                    extended
+                    period, or require transport for a special occasion, ARKILA offers a wide selection of
+                    well-maintained
+                    vehicles to suit any journey.</p>
+                <p>Our team comprises friendly, dedicated staff members committed to exceptional service. We understand
+                    the
+                    importance of a smooth rental experience, which is why we prioritize timely query responses and
+                    personalized
+                    support for every customer. With a diverse fleet and drivers known for their professionalism and
+                    local
+                    expertise, ARKILA ensures that every trip is memorable and worry-free.
+                </p>
 
-                At ARKILA, we take pride in providing not just vehicles but also professional drivers with local
-                expertise
-                for those who prefer chauffeur-driven services. Our drivers are trained to ensure every trip is
-                comfortable,
-                safe, and worry-free, offering insights about the best routes and attractions in Rizal, making your
-                journey
-                even more memorable.
-
-                Beyond car rentals, ARKILA aims to create a sense of trust and convenience for every customer. With
-                features
-                like GPS tracking for added safety, customizable rental packages, we are
-                committed to addressing your every need. Our goal is to provide a stress-free experience, so you can
-                focus
-                on your destination, not the details.
-
-                We envision ARKILA as more than a car rental service; it is your trusted partner for all your travel
-                needs
-                in Rizal. Whether you're a local resident, a business owner, or a tourist exploring the province, ARKILA
-                offers more than just vehicles—it provides the freedom to discover and explore with confidence.
-
-                Choose ARKILA today and enjoy a ride that combines convenience, reliability, and exceptional service for
-                every journey, big or small.
-            </p>
-        </div>
+            </div>
+        </section>
         <!---------------------------------------- COMPLETE BOOKINGS ----------------------------------------------------------------------->
 
         <div class="center-box">
@@ -313,6 +480,7 @@
                 </div>
             </section>
 
+
             <!----------------------------------------------------- FOOTER -------------------------------------------------------->
             <footer class="footer">
                 <div class="footer-content">
@@ -348,8 +516,10 @@
                     </div>
                 </div>
                 <div class="footer-bottom-links">
-                    <a href="#" class="footer-bottom-link">Terms and Condition</a>
-                    <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                    <a href="{{ asset('documents/terms.pdf') }}" target="_blank" class="footer-bottom-link">Terms and
+                        Condition</a>
+                    <a href="{{ asset('documents/terms.pdf') }}" target="_blank" class="footer-bottom-link">Privacy
+                        Policy</a>
                     <a href="#" class="footer-bottom-link">FAQ's</a>
                 </div>
                 <hr class="footer-line">
@@ -364,6 +534,78 @@
 
         </div>
     </div>
+
+    <script>
+
+
+document.addEventListener('DOMContentLoaded', function () {
+                const chatbotBtn = document.getElementById('chatbot-btn');
+                const chatbotContainer = document.getElementById('chatbot-container');
+                const chatMessages = document.getElementById('chatbot-messages');
+                const chatInput = document.getElementById('chatbot-text');
+                const sendButton = document.getElementById('chatbot-send');
+
+                // Toggle chatbot visibility
+                chatbotBtn.addEventListener('click', function () {
+                    chatbotContainer.classList.toggle('active');
+                });
+
+
+                // Function to add messages in a container with timestamp below
+                function addMessage(sender, message, color, alignment) {
+                    let time = new Date().toLocaleTimeString(); // Get current time
+                    let messageHtml = `
+            <div style="display: flex; flex-direction: column; align-items: ${alignment}; margin-bottom: 10px;">
+                <div style="max-width: 70%; padding: 10px; border-radius: 10px; background-color: ${color}; color: white;">
+                    <strong>${sender}:</strong> ${message}
+                </div>
+                <span style="font-size: 12px; color: gray; margin-top: 5px;">${time}</span>
+            </div>
+        `;
+                    chatMessages.innerHTML += messageHtml;
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
+                }
+
+                // Send message function
+                function sendMessage() {
+                    let userMessage = chatInput.value.trim();
+                    if (userMessage === "") return;
+
+                    addMessage("You", userMessage, "#2e2e2e", "flex-end");
+                    chatInput.value = "";
+
+
+                    fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                        },
+                        body: JSON.stringify({ message: userMessage })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            let botMessage = data.reply ? data.reply : "No response received";
+                            addMessage("ARKILA", botMessage, "#F07324", "flex-start");
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            addMessage("ARKILA", "Error: Unable to process request.", "#dc3545", "flex-start"); // Red for errors
+                        });
+                }
+
+                // Send message on button click
+                sendButton.addEventListener('click', sendMessage);
+
+                // Send message on Enter key press
+                chatInput.addEventListener('keypress', function (event) {
+                    if (event.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            });
+
+    </script>
 </body>
 
 </html>

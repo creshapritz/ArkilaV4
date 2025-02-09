@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,16 +9,19 @@ class Car extends Model
 {
     use HasFactory;
 
+    protected $table = 'cars';
+
     protected $fillable = [
-        'name', 'brand', 'type', 'location', 'price_per_day', 'availability', 'image',
+        'name', 'brand', 'type', 'location', 'price_per_day', 'availability', 'image', 'seating_capacity', 'num_bags',
+        'gas_type', 'transmission', 'platenum', 'mileage', 'color', 'regexpiry', 'primary_image', 'additional_image','company_logo',
     ];
 
     protected $attributes = [
-        'availability' => true, // Default to available
+        'availability' => true,
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at', // Optional: Hide timestamps
+        'created_at', 'updated_at',
     ];
 
     public function bookings()
@@ -29,4 +33,5 @@ class Car extends Model
     {
         return $query->where('availability', true);
     }
+    
 }

@@ -16,6 +16,8 @@ body {
 
 }
 html, body {
+    margin: 0;
+    padding: 0;
     overflow-x: hidden; 
 }
 
@@ -46,6 +48,53 @@ html, body {
 
 ::-webkit-scrollbar-track {
     background-color: #F9F8F2;
+}
+
+/*-----------------------------------------------------------RESPONSIVE DESIGN FOR NAVBAR-----------------------------------------*/
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0; 
+    }
+
+    .navbar-logo {
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        width: 100%; 
+        margin-bottom: 15px; 
+    }
+
+    .navbar-logo img {
+        width: 80px; 
+        height: auto; 
+        margin-bottom: 10px; 
+    }
+
+    .button-con {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        width: 100%; 
+        gap: 10px; 
+    }
+
+    .btn-login,
+    .btn-partner {
+        margin: 0; 
+        width: 90%; 
+        max-width: 300px; 
+        text-align: center; 
+        padding: 12px 0;
+    }
+
+    .btn-login:hover,
+    .btn-partner:hover {
+        font-weight: bold; 
+    }
 }
 
 /*----------------------------------------------------------------------NAVBAR----------------------------------------------------*/
@@ -112,14 +161,14 @@ html, body {
 
 
 /*-----------------------------------------------------------------BUTTON OF NAVBAR---------------------------------------------*/
-.btn-partner, .btn-bookings {
+.btn-partner, .btn-bookings,.btn-client {
     font-family: 'SF Pro Display', sans-serif;
     background-color: #F9F8F2;
     color: #F07324;
     border: none;
     padding: 0.5rem 1rem;
-    margin-left: 10px;
-    margin-right: 40px;
+    margin-left: auto;
+    margin-right: 1rem;
     cursor: pointer;
     font-size: 16px;
     border-radius: 15px;
@@ -127,29 +176,9 @@ html, body {
     width: 200px;
     font-weight: normal;
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-.btn-client{
-    font-family: 'SF Pro Display', sans-serif;
-    background-color: #F9F8F2;
-    color: #2E2E2E;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin-left: 10px; 
-    margin-right: 50px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 15px;
-    height: 50px;
-    width: 200px;
-    font-weight: normal;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-.btn-client i {
-    margin-right: 10px; 
 }
 
-.btn-partner:hover, .btn-bookings:hover  {
+.btn-partner:hover {
     background-color: transparent;
     color: #F9F8F2;
     border: 1px solid #F9F8F2;
@@ -171,38 +200,32 @@ html, body {
     font-weight: bold;
 }
 
-.btn-client-login  {
+.btn-login {
     font-family: 'SF Pro Display', sans-serif;
+    background-color: #F9F8F2;
+    color: #F07324;
     border: none;
     padding: 0.5rem 1rem;
-    margin-left: 10px;
-    margin-right: 50px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 15px;
     height: 50px;
     width: 120px;
     font-weight: normal;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-right: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn-client-login a{
-    color: #F07324;
 }
 
-.btn-client-login a:hover {
+.btn-login:hover {
     background-color: transparent;
-    color: #F07324;
+    color: #F9F8F2;
     border: 1px solid #F9F8F2;
     font-weight: bold;
 }
 
 /*-----------------------------------------------------SIDEBAR-------------------------------------------------------------------*/
 .sidebar {
-    background-color: #F9F8F2;
+    background-color: rgba(249, 248, 242, 0.8);
     width: 60px;
     height: 100%;
     flex-direction: column;
@@ -219,7 +242,7 @@ html, body {
 /* --------------------------------------------------------------------EXPANDING SIDEBAR-------------------------------------- */
 .sidebar.expanded {
     width: 240px;
-    background-color: #F9F8F2;
+    background-color: rgba(249, 248, 242, 0.8);
 }
 
 .sidebar ul {
@@ -230,7 +253,7 @@ html, body {
 }
 
 .sidebar ul li {
-    margin: 20px 0;
+    margin: 10px 0;
     width: 100%;
 }
 
@@ -247,7 +270,7 @@ html, body {
 }
 
 .sidebar ul li a:hover {
-    background-color: #C6C5C0;
+    background-color: #F9F8F2;
     box-shadow: #C6C5C0;
 }
 
@@ -288,7 +311,6 @@ html, body {
 
 .menu-text {
     display: none;
-    color: #2E2E2E;
     margin-left: 15px;
     font-weight: bold;
     font-size: 35px;
@@ -299,8 +321,9 @@ html, body {
 .sidebar.expanded .menu-text {
     display: inline-block;
     opacity: 1;
+    color: #2E2E2E;
+    font-weight: 600;
 }
-
 /* ---------------------------------------------------RESPONSIVE DESIGN FOR SIDEBAR------------------------------------------- */
 @media (max-width: 768px) {
     .sidebar {
@@ -327,17 +350,15 @@ html, body {
         font-size: 16px;
     }
 }
-
 /*---------------------------------------------------------- MAIN CONTENT ---------------------------------------------------*/
+/* Rent Section Styling */
 .rent {
     position: relative;
     background: url('../img/rent.jpg') no-repeat center center/cover;
     height: 100vh;
-    display: block;
-    background-size: cover;
-    padding: 0%;
     width: 100%;
-
+    padding: 0;
+    background-size: cover;
 }
 
 .rent::before {
@@ -347,34 +368,54 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 1; /* Ensure the overlay is above the background image */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 1; /* Place above the background image */
 }
 
-
+/* Rent Content Styling */
 .rent-content {
     position: relative;
-    height: 100vh;
-    width: auto;
-    z-index: 2;
-    padding: 30px;
-    border-radius: 10px;
-
+    z-index: 2; /* Ensure content is above the overlay */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Rent Heading Styling */
 .rent-content h1 {
-    position: absolute;
-    top: 50%;
-    right: 40%;
     color: #F9F8F2;
     font-weight: bold;
     text-align: center;
-    transform: translateY(-50%);
-    font-size: 100px;
-    margin: 0 0 10px;
+    font-size: 5rem; /* Adjusted for responsiveness */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
+    margin: 0;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .rent-content h1 {
+        font-size: 4rem; /* Adjust font size for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .rent-content h1 {
+        font-size: 3rem; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .rent-content h1 {
+        font-size: 2rem; /* Adjust font size for mobile screens */
+        padding: 0 10px; /* Add padding for smaller devices */
+    }
+}
+
+
+
+
+
 /* Booking Section */
 .booking-section {
     background-color: #F9F8F2;
@@ -384,7 +425,7 @@ html, body {
 }
 
 .booking-content h2 {
-    font-size: 30px;
+    font-size: 40px;
     color: #F07324;
     margin-bottom: 10px;
 }
@@ -403,6 +444,10 @@ html, body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     display: inline-block; /* Center align */
     margin-top: 20px; /* Space above the form container */
+    width: 70%; 
+    /* Prevent form from stretching too wide on large screens */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .booking-form {
@@ -417,6 +462,9 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+    max-width: 250px;
+    
 }
 
 .input-group label {
@@ -424,6 +472,55 @@ html, body {
     color: #2E2E2E;
     margin-bottom: 5px;
 }
+
+
+/* Date Input Styling */
+.input-group input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-family: 'SF Pro Display', sans-serif;
+    border: 2px solid #cccccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #333333;
+    appearance: none; /* Remove default browser styles */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder Styling for Date */
+.input-group input[type="date"]::placeholder {
+    color: #aaaaaa;
+    font-style: italic;
+}
+
+/* Focus Effect */
+.input-group input[type="date"]:focus {
+    border-color: #F07324;
+    box-shadow: 0 4px 8px rgba(240, 115, 36, 0.2);
+    background-color: #fafafa;
+}
+
+/* Hover Effect */
+.input-group input[type="date"]:hover {
+    border-color: #F07324;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Optional: Calendar Icon */
+.input-group input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray"%3E%3Cpath d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM5 20V9h14v11H5zm2-9h5v5H7v-5z"/%3E%3C/svg%3E');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    opacity: 0.8;
+}
+
 
 .input-group input {
     width: 100%;
@@ -433,39 +530,105 @@ html, body {
     border-radius: 5px;
     outline: none;
     box-sizing: border-box;
+    font-family: 'SF Pro Display', sans-serif;
 }
 
 .btn-search {
-    padding: 12px 20px;
-    margin-top: 21px;
+    padding: 13px 20px;
     background-color: #F07324;
     color: #F9F8F2;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    align-self: flex-end; /* Aligns the button to the bottom */
+    max-width: 150px;
 }
 
 .btn-search:hover {
     background-color: #C55D1E;
 }
 
+
+
+/* Flatpickr Custom Styling */
+.flatpickr-calendar {
+    background-color: #F9F8F2;
+    border: 1px solid #F07324;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: 'SF Pro Display', sans-serif;
+    color: #333;
+}
+
+.flatpickr-day {
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.flatpickr-day:hover {
+    background-color: #F07324;
+    color: #fff;
+}
+
+.flatpickr-day.today {
+    background-color: #C55D1E;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .booking-form {
+        gap: 20px; /* Increase spacing on medium screens */
+    }
+
+    .booking-form-container {
+        padding: 20px; /* Reduced padding for medium screens */
+    }
+}
+
 @media (max-width: 768px) {
     .booking-form {
         flex-direction: column;
+        gap: 20px;
     }
 
-    .input-group input {
-        width: 100%;
+    .booking-content h2 {
+        font-size: 26px; /* Smaller heading for mobile */
+    }
+
+    .booking-content p {
+        font-size: 18px; /* Adjust text size for smaller screens */
+    }
+
+    .btn-search {
+        font-size: 14px; /* Adjust button font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-form-container {
+        width: 90%; /* Full width on small screens */
+    }
+
+    .booking-content h2 {
+        font-size: 22px;
+    }
+
+    .booking-content p {
+        font-size: 16px;
     }
 }
 
 
 
+/* Our Partners Section */
 
 .our-partners h2 {
-    font-size: 38px;
+    font-size: 40px;
     color: #F07324;
     margin-bottom: 10px;
     text-align: center;
@@ -498,13 +661,58 @@ html, body {
 }
 
 .partner-box img {
-    width: 70%;
-    height: 70%;
+    width: 100px; 
+    height: 200px; 
     object-fit: contain;
 }
 
 .partner-box:hover {
     transform: scale(1.05);
+}
+
+.partner-box:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .partners {
+        padding-left: 1in;
+        padding-right: 1in;
+        justify-content: center; /* Center the items */
+        gap: 1rem; /* Adjust the gap between logos */
+    }
+
+    .partner-box {
+        width: 3in; /* Adjust the width of the boxes */
+        height: 1.5in; /* Adjust height for better spacing */
+    }
+
+    .partner-box img {
+        width: 200px; /* Adjust width for tablets */
+        height: 150px; /* Adjust height for tablets */
+    }
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+    .partners {
+        flex-direction: column; /* Stack the partner boxes vertically */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .partner-box {
+        width: 100%; /* Make each partner box take full width */
+        height: auto; /* Adjust height automatically */
+        margin-bottom: 1rem; /* Add space between stacked logos */
+    }
+
+    .partner-box img {
+        width: 150px; /* Adjust width for mobile devices */
+        height: 100px; /* Adjust height for mobile devices */
+    }
 }
 
 
@@ -514,12 +722,11 @@ html, body {
 .faq-box {
     background-color: #F07324;
     width: 100%;
-    height: 50rem;
+    height: auto; /* Allow height to adjust based on content */
 }
 
 details {
     cursor: pointer;
-
 }
 
 details summary {
@@ -575,7 +782,6 @@ details p {
     margin-right: 5rem;
     font-size: 18px;
     font-weight: normal;
-
 }
 
 .faqs-header p {
@@ -583,7 +789,6 @@ details p {
     font-size: 50px;
     margin-top: -20px;
     color: #F9F8F2;
-
 }
 
 .faqs-header h2 {
@@ -594,9 +799,118 @@ details p {
     color: #F9F8F2;
 }
 
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .faq-box {
+        padding: 20px;
+    }
+
+    .faqs-header p {
+        font-size: 40px;
+    }
+
+    .faqs-header h2 {
+        font-size: 24px;
+    }
+
+    details summary {
+        font-size: 18px;
+        margin-left: 10rem; /* Adjust margin to fit smaller screens */
+        margin-right: 2rem;
+    }
+
+    details p {
+        font-size: 16px;
+        margin-left: 10rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .faq-box {
+        padding: 10px;
+    }
+
+    .faqs-header p {
+        font-size: 28px;
+    }
+
+    .faqs-header h2 {
+        font-size: 20px;
+    }
+
+    details summary {
+        font-size: 16px;
+        margin-left: 5rem; /* Adjust margin further for smaller screens */
+        margin-right: 2rem;
+    }
+
+    details p {
+        font-size: 14px;
+        margin-left: 5rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .faq-box {
+        padding: 10px;
+    }
+
+    .faqs-header p {
+        font-size: 24px;
+    }
+
+    .faqs-header h2 {
+        font-size: 18px;
+    }
+
+    details summary {
+        font-size: 14px;
+        margin-left: 3rem; /* Adjust margin for very small screens */
+        margin-right: 2rem;
+    }
+
+    details p {
+        font-size: 12px;
+        margin-left: 3rem;
+        margin-right: 2rem;
+    }
+}
+
 /*----------------------------------------------------------------VIDEO2----------------------------------------------------*/
 .video2 {
-    padding-top: 0.5in;
+    position: relative;
+    width: 100%;
+    padding-top: 0.5in; /* Default padding for larger screens */
+}
+
+.video2 video {
+    width: 100%; /* Ensure the video scales to the container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100vh; /* Prevent the video from taking too much vertical space */
+    display: block;
+    object-fit: cover; /* Cover the container without distortion */
+}
+
+@media (max-width: 768px) {
+    .video2 {
+        padding-top: 0.3in; /* Reduce padding for medium devices */
+    }
+
+    .video2 video {
+        max-height: 60vh; /* Limit video height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .video2 {
+        padding-top: 0.2in; /* Further reduce padding for small devices */
+    }
+
+    .video2 video {
+        max-height: 50vh; /* Restrict video height for very small devices */
+    }
 }
 
 /*----------------------------------------------------------------FOOTER----------------------------------------------------*/
@@ -607,151 +921,130 @@ details p {
     width: 100%;
     position: relative;
     bottom: 0;
-    height: 7in;
     margin: 0;
+    padding: 20px;
 }
 
 .footer-content {
     display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
     justify-content: space-between;
-    /* Distribute space between sections */
-    align-items: flex-start;
-    /* Align items to the start (left) */
-    margin: 0;
-    padding-left: 200px;
-    /* Adjust padding to move content to the left */
-    padding-top: 50px;
+    gap: 20px;
+    padding: 20px;
 }
 
 .footer-section {
+    flex: 1 1 300px; /* Sections take up full width on smaller screens */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Align items to the start (left) */
+    margin: 0 30px; /* Adjust the horizontal margin to move it more to the right */
+    padding-left: 50px; /* Add padding on the left for additional spacing */
 }
 
 .footer-logo {
-    width: 150px;
+    width: 120px; /* Adjusted for smaller screens */
     height: auto;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 20px;
-    position: relative;
-    margin-left: auto;
-    margin-right: 200px;
-    padding-bottom: 20px;
+    font-size: 16px;
+    gap: 10px; /* Adds spacing between links */
 }
 
-.footer-link {
-    color: #F9F8F2;
-    text-decoration: none;
-    font-size: 20px;
-    margin: 5px 0;
-    position: relative;
-    margin-left: 2rem;
-}
-
-.footer-link:hover {
-    font-weight: bold;
-}
-
-.footer-link:hover::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #fff;
-}
-
+.footer-link, 
 .payment-method-link {
     color: #F9F8F2;
     text-decoration: none;
-    font-size: 20px;
-    margin: 5px 0;
-    position: relative;
+    font-size: 16px; /* Adjust font size for smaller screens */
 }
 
-.center-section {
-    text-align: left;
-    align-items: flex-start;
-    /* Center items within the section */
-    margin-left: 200px;
-    /* Push the section to the center */
-    margin-right: auto;
-    /* Push the section to the center */
-    font-size: 30px;
-    margin-top: 50px;
-}
-
-.right-section {
-    text-align: left;
-    align-items: flex-start;
-    /* Align items to the start (left) */
-    margin-left: auto;
-    /* Push the section to the right */
-    margin-right: 100px;
-    /* Adjust margin to align with the payment method */
-    font-size: 30px;
-    margin-top: 50px;
+.footer-link:hover, 
+.payment-method-link:hover {
+    font-weight: bold;
 }
 
 .footer-line {
     border: none;
-    border-top: 1px solid #ffff;
+    border-top: 1px solid #fff;
     width: 100%;
-    margin-top: 20px;
-    position: center;
+    margin: 10px 0;
 }
 
 .footer-bottom-links {
     display: flex;
-    justify-content: flex-end;
-    gap: 50px;
-    margin-right: 100px;
+    flex-wrap: wrap; /* Allows wrapping for small screens */
+    gap: 10px;
+    justify-content: center; /* Center-align on smaller screens */
+    padding: 10px;
 }
 
 .footer-bottom-link {
     color: #F9F8F2;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px; /* Smaller font for small screens */
 }
-
-.footer-bottom-link:hover {
-    font-weight: bold;
-}
-
 
 .footer-social-media {
     display: flex;
-    justify-content: flex-end;
-    gap: 50px;
-    margin-right: 150px;
-    margin-top: 40px;
-    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    text-align: center;
 }
 
 .social-media-link i {
-    font-size: 24px;
+    font-size: 20px; /* Smaller icon size */
     color: #F9F8F2;
-
 }
 
 .social-media-link:hover i {
     color: #90C6AA;
-    /* Change to your desired hover color */
 }
 
 .footer-social-media p {
-    margin-top: 2px;
-    font-size: 16px;
-    text-align: left;
-    margin-right: 870px
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .footer-content {
+        padding: 10px;
+    }
+
+    .footer-section {
+        flex: 1 1 100%; /* Full width for each section */
+    }
+
+    .footer-links, 
+    .footer-bottom-links {
+        text-align: center; /* Center-align links on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo {
+        width: 100px; /* Smaller logo for very small screens */
+    }
+
+    .footer-link, 
+    .payment-method-link, 
+    .footer-bottom-link {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .social-media-link i {
+        font-size: 18px; /* Smaller icons */
+    }
+
+    .footer-social-media p {
+        font-size: 12px; /* Smaller text */
+    }
 }

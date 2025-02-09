@@ -4,16 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
     <title>Verification</title>
     <link href="https://unpkg.com/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
     <script src="{{ asset('assets/js/register.js') }}" defer></script>
-<<<<<<< HEAD
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-=======
->>>>>>> 913c2da (uploadingv1)
 </head>
 
 <body>
@@ -21,11 +19,7 @@
 
         <div class="image-container">
             <div class="logo-container">
-<<<<<<< HEAD
                 <img src="{{ asset('assets/img/whitelogoarkila.png') }}" alt="Logo" class="logo">
-=======
-                <img src="{{ asset('assets/img/arkila_logo.png') }}" alt="Logo" class="logo">
->>>>>>> 913c2da (uploadingv1)
                 <p class="logo-text">Access a ride <br> that's ready when you are</p>
             </div>
             <img src="{{ asset('assets/img/background1.png') }}">
@@ -39,11 +33,7 @@
             <form action="{{ route('verify') }}" method="POST">
                 @csrf
                 <div class="form-header">
-<<<<<<< HEAD
                     <h1>Hello, {{ session('client_name') }}!</h1>
-=======
-                    <h1>Hello, User!</h1>
->>>>>>> 913c2da (uploadingv1)
                     <p>Enter your Code!</p>
                 </div>
 
@@ -67,46 +57,27 @@
 
                     <!-- Resend Code Button -->
                     <div class="resend-code-container">
-<<<<<<< HEAD
                         <a href="{{ route('verification.send') }}" class="resend-code" id="resend-btn">Resend Code</a>
-=======
-                        <a href="{{ route('verification.send') }}" class="resend-code">Resend Code</a>
->>>>>>> 913c2da (uploadingv1)
 
                     </div>
 
                     <!-- Navigation Buttons -->
                     <div class="button-container">
-<<<<<<< HEAD
                         <button type="submit" class="next-button">Next</button>
                         <button type="button" class="back-button" onclick="goToBack()">Back</button>
 
 
-=======
-                    <button type="submit" class="next-button">Next</button>
-                    <button type="button" class="back-button" onclick="goToBack()">Back</button>
-                        
-                       
->>>>>>> 913c2da (uploadingv1)
                     </div>
                 </div>
             </form>
 
-<<<<<<< HEAD
 
 
-=======
-            
-            @if (session('error'))
-                <p style="color: red;">{{ session('error') }}</p>
-            @endif
->>>>>>> 913c2da (uploadingv1)
 
         </div>
 
     </div>
 
-<<<<<<< HEAD
 
 
 
@@ -180,8 +151,6 @@
 
     </script>
 
-=======
->>>>>>> 913c2da (uploadingv1)
 </body>
 
 </html>
